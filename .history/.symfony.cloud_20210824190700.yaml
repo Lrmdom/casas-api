@@ -9,7 +9,6 @@ runtime:
         - sodium
         - ctype
         - iconv
-        - pdo_pgsql
         
 
 #variables:
@@ -50,3 +49,7 @@ hooks:
 relationships:
     database: "db:postgresql"
 
+runtime:
+    extensions:
+        - pdo_pgsql
+        # other extensions here
