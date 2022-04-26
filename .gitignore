@@ -8,6 +8,11 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-!/.history/
-!/.symfony/
+/.history/
+/.symfony/
 
+/docker/mysql/var/
+/src/.history/
+/.history/
+/.history/src/Controller/
+/.history/src/
