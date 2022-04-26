@@ -1,0 +1,94 @@
+App\Entity\Alert:
+    type: entity
+    table: alert
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        idCliente:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: id_cliente
+        idTipoAlojamento:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: id_tipo_alojamento
+        idTipo:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: id_tipo
+        valor:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        pessoas:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        destino:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        forRent:
+            type: boolean
+            nullable: false
+            column: for_rent
+        forSale:
+            type: boolean
+            nullable: false
+            column: for_sale
+        forArrenda:
+            type: boolean
+            nullable: false
+            column: for_arrenda
+        valorArrenda:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: valor_arrenda
+        valorVenda:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: valor_venda
+        valorRent:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: valor_rent
+        inicio:
+            type: string
+            nullable: true
+            length: 12
+            options:
+                fixed: false
+                default: 'NULL'
+        fim:
+            type: string
+            nullable: true
+            length: 12
+            options:
+                fixed: false
+                default: 'NULL'
+    lifecycleCallbacks: {  }

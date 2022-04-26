@@ -1,0 +1,12 @@
+api_platform:
+# format for refine.dev tool
+    formats:
+        json: [ 'application/json' ]
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        versions: [3]
+    defaults:
+        pagination_enabled: false

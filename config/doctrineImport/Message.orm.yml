@@ -1,0 +1,37 @@
+App\Entity\Message:
+    type: entity
+    table: Message
+    indexes:
+        IDX_790009E3BF396750:
+            columns:
+                - id
+    id:
+        language:
+            type: string
+            nullable: false
+            length: 16
+            options:
+                fixed: false
+                default: ''''''
+            id: true
+        id:
+            associationKey: true
+    fields:
+        translation:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+    oneToOne:
+        id:
+            targetEntity: Sourcemessage
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

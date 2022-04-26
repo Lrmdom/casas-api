@@ -1,0 +1,121 @@
+App\Entity\Proprietario:
+    type: entity
+    table: proprietario
+    id:
+        propid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        proprietario:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        senha:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        senhaRepeat:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+            column: senha_repeat
+        salt:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        telefone:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        morada:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        codPostal:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+            column: cod_postal
+        localidade:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        conflito1:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        conflito2:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        conflito3:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        sessid:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        activo:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+        pais:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        subscribeNewsletter:
+            type: boolean
+            nullable: false
+            column: subscribe_newsletter
+        facebookAccount:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: facebook_account
+        fbId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: fb_id
+    lifecycleCallbacks: {  }

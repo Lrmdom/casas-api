@@ -1,0 +1,31 @@
+App\Entity\Casacancelissue:
+    type: entity
+    table: casacancelissue
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        propid:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        descricao:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        codCasa:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: cod_casa
+    lifecycleCallbacks: {  }

@@ -1,0 +1,27 @@
+App\Entity\Sourcemessage:
+    type: entity
+    table: SourceMessage
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        category:
+            type: string
+            nullable: true
+            length: 32
+            options:
+                fixed: false
+                default: 'NULL'
+        message:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

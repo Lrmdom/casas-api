@@ -1,0 +1,48 @@
+App\Entity\ReservaPayment:
+    type: entity
+    table: reserva_payment
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        idPagamento:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: id_pagamento
+        idTipoPagamento:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+            column: id_tipo_pagamento
+        valor:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        idpreco:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        idreserva:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        data:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+    lifecycleCallbacks: {  }

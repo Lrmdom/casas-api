@@ -1,0 +1,148 @@
+App\Entity\Prereserva:
+    type: entity
+    table: prereserva
+    id:
+        nPrereserva:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: n_prereserva
+            generator:
+                strategy: IDENTITY
+    fields:
+        data:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        expira:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        id:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        codCasa:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: cod_casa
+        nmMes:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: nm_mes
+        nSemana:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: n_semana
+        inicio:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        fim:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        preco:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        quinzena:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        nome:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: Nome
+        morada:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        telefone:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        perguntas:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        sugestoes:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        comentarios:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: Comentarios
+        situacao:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        formaPagamento:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: forma_pagamento
+        valor:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        sessionid:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        voto:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

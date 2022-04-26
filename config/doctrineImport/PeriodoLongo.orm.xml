@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\PeriodoLongo" table="periodo_longo">
+    <indexes>
+      <index name="cod_casa" columns="cod_casa"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="inicio" type="string" column="inicio" length="12" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fim" type="string" column="fim" length="12" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="precoMes" type="integer" column="preco_mes" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="estadiaMinima" type="string" column="estadia_minima" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="codCasa" target-entity="Casa" fetch="LAZY">
+      <join-columns>
+        <join-column name="cod_casa" referenced-column-name="cod_casa"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,21 @@
+App\Entity\Destino:
+    type: entity
+    table: destino
+    id:
+        idDestino:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_destino
+            generator:
+                strategy: IDENTITY
+    fields:
+        destino:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,54 @@
+App\Entity\PeriodoLongo:
+    type: entity
+    table: periodo_longo
+    indexes:
+        cod_casa:
+            columns:
+                - cod_casa
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        inicio:
+            type: string
+            nullable: false
+            length: 12
+            options:
+                fixed: false
+        fim:
+            type: string
+            nullable: false
+            length: 12
+            options:
+                fixed: false
+        precoMes:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: preco_mes
+        estadiaMinima:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: estadia_minima
+    manyToOne:
+        codCasa:
+            targetEntity: Casa
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cod_casa:
+                    referencedColumnName: cod_casa
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

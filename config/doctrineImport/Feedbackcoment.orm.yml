@@ -1,0 +1,43 @@
+App\Entity\Feedbackcoment:
+    type: entity
+    table: feedbackcoment
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        codCasa:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: cod_casa
+        coment:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        valorVoto:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: valor_voto
+        reserva:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        nome:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

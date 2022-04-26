@@ -1,0 +1,22 @@
+App\Entity\TipoAlojamento:
+    type: entity
+    table: tipo_alojamento
+    id:
+        idTipoAlojamento:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_tipo_alojamento
+            generator:
+                strategy: IDENTITY
+    fields:
+        tipoAlojamento:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: tipo_alojamento
+    lifecycleCallbacks: {  }

@@ -1,0 +1,21 @@
+App\Entity\EstadiaMinima:
+    type: entity
+    table: estadia_minima
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        estadiaMin:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+            column: estadia_min
+    lifecycleCallbacks: {  }

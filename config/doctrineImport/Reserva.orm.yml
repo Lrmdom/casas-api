@@ -1,0 +1,88 @@
+App\Entity\Reserva:
+    type: entity
+    table: reserva
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nPrereserva:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: n_prereserva
+        reservado:
+            type: boolean
+            nullable: true
+        valor:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        nCheque:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: n_cheque
+        valorsinal:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: valorSinal
+        idcliente:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        idpreco:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        tipopagamento:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        nPagamento:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: n_pagamento
+        reservaState:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: reserva_state
+        data:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+        user:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+                default: User
+        eventid:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

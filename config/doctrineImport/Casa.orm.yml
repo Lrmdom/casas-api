@@ -1,0 +1,476 @@
+App\Entity\Casa:
+    type: entity
+    table: casa
+    id:
+        codCasa:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: cod_casa
+            generator:
+                strategy: IDENTITY
+    fields:
+        adicionado:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        dataActivo:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: data_activo
+        destino:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        proprietario:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        propid:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        designacao:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        tipoalojamento:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        tipo:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        pessoas:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+                default: '0'
+        pais:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        distrito:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        endereco:
+            type: string
+            nullable: true
+            length: 250
+            options:
+                fixed: false
+        codpostal:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        area:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        lat:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        lng:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        altitude:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        localidade:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        distCentro:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: dist_centro
+        distPraia:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: dist_praia
+        piscina:
+            type: boolean
+            nullable: true
+        televisao:
+            type: boolean
+            nullable: true
+        arCondicionado:
+            type: boolean
+            nullable: true
+            column: ar_condicionado
+        img1:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: images/noimage.jpg
+            column: img_1
+        img2:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: images/noimage.jpg
+            column: img_2
+        img3:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: images/noimage.jpg
+            column: img_3
+        img4:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: images/noimage.jpg
+            column: img_4
+        img5:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: images/noimage.jpg
+            column: img_5
+        img6:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: images/noimage.jpg
+            column: img_6
+        img7:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: images/noimage.jpg
+            column: img_7
+        img8:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+                default: images/noimage.jpg
+            column: img_8
+        img9:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: images/noimage.jpg
+            column: img_9
+        img10:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: images/noimage.jpg
+            column: img_10
+        quartos:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        camascasal:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        camassingle:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        casasbanho:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        golf:
+            type: boolean
+            nullable: true
+        tenis:
+            type: boolean
+            nullable: true
+        pesca:
+            type: boolean
+            nullable: true
+        natacao:
+            type: boolean
+            nullable: true
+        bowling:
+            type: boolean
+            nullable: true
+        casino:
+            type: boolean
+            nullable: true
+        cinema:
+            type: boolean
+            nullable: true
+        discoteca:
+            type: boolean
+            nullable: true
+        outrasActividprox:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: outras_actividprox
+        roupascama:
+            type: boolean
+            nullable: true
+        roupasbanho:
+            type: boolean
+            nullable: true
+        limpeza:
+            type: boolean
+            nullable: true
+        utilcozinha:
+            type: boolean
+            nullable: true
+        fogao:
+            type: boolean
+            nullable: true
+        frigorif:
+            type: boolean
+            nullable: true
+        congel:
+            type: boolean
+            nullable: true
+        forno:
+            type: boolean
+            nullable: true
+        barbecue:
+            type: boolean
+            nullable: true
+        microndas:
+            type: boolean
+            nullable: true
+        mlavaloica:
+            type: boolean
+            nullable: true
+        mlavaroupa:
+            type: boolean
+            nullable: true
+        aqcentral:
+            type: boolean
+            nullable: true
+        satcabo:
+            type: boolean
+            nullable: true
+        internet:
+            type: boolean
+            nullable: true
+        outrosServicos:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: outros_servicos
+        linkInfo:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: link_info
+        linkDispon:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: link_dispon
+        activo:
+            type: boolean
+            nullable: true
+        sessid:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        promo:
+            type: boolean
+            nullable: true
+        certif:
+            type: boolean
+            nullable: true
+        dataAct:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: data_act
+        titulo:
+            type: string
+            nullable: true
+            length: 600
+            options:
+                fixed: false
+        qtspecialoffer:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        fengomar:
+            type: boolean
+            nullable: true
+        estacionamento:
+            type: boolean
+            nullable: true
+        telefone:
+            type: boolean
+            nullable: true
+        despertador:
+            type: boolean
+            nullable: true
+        dvd:
+            type: boolean
+            nullable: true
+        torradeira:
+            type: boolean
+            nullable: true
+        animais:
+            type: boolean
+            nullable: true
+        fumadores:
+            type: boolean
+            nullable: true
+        caucao:
+            type: boolean
+            nullable: true
+        valorcaucao:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+        deficientes:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        concelho:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        altImg1:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: alt_img_1
+        forSale:
+            type: boolean
+            nullable: false
+            column: for_sale
+        forRent:
+            type: boolean
+            nullable: false
+            column: for_rent
+        forArrenda:
+            type: boolean
+            nullable: false
+            column: for_arrenda
+        valorArrendamento:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: valor_arrendamento
+        valorVenda:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: valor_venda
+        certifEnerg:
+            type: boolean
+            nullable: false
+            column: certif_energ
+        certifEnergLevel:
+            type: string
+            nullable: false
+            length: 5
+            options:
+                fixed: false
+            column: certif_energ_level
+        seoTitle:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: seo_title
+        ano:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

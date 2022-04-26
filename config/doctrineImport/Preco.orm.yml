@@ -1,0 +1,71 @@
+App\Entity\Preco:
+    type: entity
+    table: preco
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        ano:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        nmMes:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+            column: nm_mes
+        nSemana:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: n_semana
+        codCasa:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: cod_casa
+        inicio:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        fim:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        preco:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        livre:
+            type: boolean
+            nullable: true
+        reservar:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        promo:
+            type: boolean
+            nullable: true
+        paga:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

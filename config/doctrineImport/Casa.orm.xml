@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Casa" table="casa">
+    <id name="codCasa" type="integer" column="cod_casa">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="adicionado" type="string" column="adicionado" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dataActivo" type="string" column="data_activo" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="destino" type="string" column="destino" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="proprietario" type="string" column="proprietario" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="propid" type="integer" column="propid" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="designacao" type="string" column="designacao" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="tipoalojamento" type="string" column="tipoalojamento" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="tipo" type="string" column="tipo" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="pessoas" type="integer" column="pessoas" nullable="true">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">0</option>
+      </options>
+    </field>
+    <field name="pais" type="string" column="pais" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="distrito" type="string" column="distrito" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="endereco" type="string" column="endereco" length="250" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="codpostal" type="string" column="codpostal" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="area" type="string" column="area" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="lat" type="string" column="lat" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="lng" type="string" column="lng" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="altitude" type="string" column="altitude" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="localidade" type="string" column="localidade" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="distCentro" type="string" column="dist_centro" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="distPraia" type="string" column="dist_praia" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="piscina" type="boolean" column="piscina" nullable="true"/>
+    <field name="televisao" type="boolean" column="televisao" nullable="true"/>
+    <field name="arCondicionado" type="boolean" column="ar_condicionado" nullable="true"/>
+    <field name="img1" type="string" column="img_1" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">images/noimage.jpg</option>
+      </options>
+    </field>
+    <field name="img2" type="string" column="img_2" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">images/noimage.jpg</option>
+      </options>
+    </field>
+    <field name="img3" type="string" column="img_3" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">images/noimage.jpg</option>
+      </options>
+    </field>
+    <field name="img4" type="string" column="img_4" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">images/noimage.jpg</option>
+      </options>
+    </field>
+    <field name="img5" type="string" column="img_5" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">images/noimage.jpg</option>
+      </options>
+    </field>
+    <field name="img6" type="string" column="img_6" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">images/noimage.jpg</option>
+      </options>
+    </field>
+    <field name="img7" type="string" column="img_7" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">images/noimage.jpg</option>
+      </options>
+    </field>
+    <field name="img8" type="string" column="img_8" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">images/noimage.jpg</option>
+      </options>
+    </field>
+    <field name="img9" type="string" column="img_9" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">images/noimage.jpg</option>
+      </options>
+    </field>
+    <field name="img10" type="string" column="img_10" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">images/noimage.jpg</option>
+      </options>
+    </field>
+    <field name="quartos" type="integer" column="quartos" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="camascasal" type="integer" column="camascasal" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="camassingle" type="integer" column="camassingle" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="casasbanho" type="integer" column="casasbanho" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="golf" type="boolean" column="golf" nullable="true"/>
+    <field name="tenis" type="boolean" column="tenis" nullable="true"/>
+    <field name="pesca" type="boolean" column="pesca" nullable="true"/>
+    <field name="natacao" type="boolean" column="natacao" nullable="true"/>
+    <field name="bowling" type="boolean" column="bowling" nullable="true"/>
+    <field name="casino" type="boolean" column="casino" nullable="true"/>
+    <field name="cinema" type="boolean" column="cinema" nullable="true"/>
+    <field name="discoteca" type="boolean" column="discoteca" nullable="true"/>
+    <field name="outrasActividprox" type="string" column="outras_actividprox" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="roupascama" type="boolean" column="roupascama" nullable="true"/>
+    <field name="roupasbanho" type="boolean" column="roupasbanho" nullable="true"/>
+    <field name="limpeza" type="boolean" column="limpeza" nullable="true"/>
+    <field name="utilcozinha" type="boolean" column="utilcozinha" nullable="true"/>
+    <field name="fogao" type="boolean" column="fogao" nullable="true"/>
+    <field name="frigorif" type="boolean" column="frigorif" nullable="true"/>
+    <field name="congel" type="boolean" column="congel" nullable="true"/>
+    <field name="forno" type="boolean" column="forno" nullable="true"/>
+    <field name="barbecue" type="boolean" column="barbecue" nullable="true"/>
+    <field name="microndas" type="boolean" column="microndas" nullable="true"/>
+    <field name="mlavaloica" type="boolean" column="mlavaloica" nullable="true"/>
+    <field name="mlavaroupa" type="boolean" column="mlavaroupa" nullable="true"/>
+    <field name="aqcentral" type="boolean" column="aqcentral" nullable="true"/>
+    <field name="satcabo" type="boolean" column="satcabo" nullable="true"/>
+    <field name="internet" type="boolean" column="internet" nullable="true"/>
+    <field name="outrosServicos" type="string" column="outros_servicos" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="linkInfo" type="string" column="link_info" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="linkDispon" type="string" column="link_dispon" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="activo" type="boolean" column="activo" nullable="true"/>
+    <field name="sessid" type="string" column="sessid" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="promo" type="boolean" column="promo" nullable="true"/>
+    <field name="certif" type="boolean" column="certif" nullable="true"/>
+    <field name="dataAct" type="string" column="data_act" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="titulo" type="string" column="titulo" length="600" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="qtspecialoffer" type="integer" column="qtspecialoffer" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="fengomar" type="boolean" column="fengomar" nullable="true"/>
+    <field name="estacionamento" type="boolean" column="estacionamento" nullable="true"/>
+    <field name="telefone" type="boolean" column="telefone" nullable="true"/>
+    <field name="despertador" type="boolean" column="despertador" nullable="true"/>
+    <field name="dvd" type="boolean" column="dvd" nullable="true"/>
+    <field name="torradeira" type="boolean" column="torradeira" nullable="true"/>
+    <field name="animais" type="boolean" column="animais" nullable="true"/>
+    <field name="fumadores" type="boolean" column="fumadores" nullable="true"/>
+    <field name="caucao" type="boolean" column="caucao" nullable="true"/>
+    <field name="valorcaucao" type="string" column="valorcaucao" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="deficientes" type="string" column="deficientes" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="concelho" type="string" column="concelho" length="45" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="altImg1" type="string" column="alt_img_1" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="forSale" type="boolean" column="for_sale" nullable="false"/>
+    <field name="forRent" type="boolean" column="for_rent" nullable="false"/>
+    <field name="forArrenda" type="boolean" column="for_arrenda" nullable="false"/>
+    <field name="valorArrendamento" type="integer" column="valor_arrendamento" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="valorVenda" type="integer" column="valor_venda" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="certifEnerg" type="boolean" column="certif_energ" nullable="false"/>
+    <field name="certifEnergLevel" type="string" column="certif_energ_level" length="5" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="seoTitle" type="string" column="seo_title" length="100" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="ano" type="integer" column="ano" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>
