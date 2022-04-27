@@ -17,15 +17,19 @@ use ApiPlatform\Core\Annotation\ApiResource;
  */
 class Reserva
 {
-
-
     /**
-     * @var string|null
-     * @ORM\Column(name="cod_casa", type="integer",  nullable=true, options={"default"="NULL"})
-     * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="prereservas")
+     * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="reservas")
      * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
      */
-    private $codCasa = 'NULL';
+    private $casa;
+
+    /**
+     * @var int|null
+     * @ORM\Column(name="cod_casa", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="reservas")
+     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
+     */
+    private $codCasa;
     /**
      * @var int
      *
@@ -299,5 +303,21 @@ class Reserva
         return $this;
     }
 
+    public function getCasa()
+    {
+        return $this->casa;
+    }
+
+    public function getCodCasa(): ?string
+    {
+        return $this->codCasa;
+    }
+
+    public function setCodCasa(?string $codCasa): self
+    {
+        $this->codCasa = $codCasa;
+
+        return $this;
+    }
 
 }

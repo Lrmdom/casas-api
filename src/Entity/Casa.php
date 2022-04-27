@@ -33,19 +33,38 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiFilter(SearchFilter::class, properties: ['cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact'])]
 class Casa
 {
+    /**
+     * @ORM\OneToMany(targetEntity=Casageodata::class, mappedBy="casa")
+     *
+     */
+    private $casageodata;
+    /**
+     * @ORM\OneToMany(targetEntity=Casaattributes::class, mappedBy="casa")
+     *
+     */
+    private $casaattributes;
+    /**
+     * @ORM\OneToMany(targetEntity=Reserva::class, mappedBy="casa")
+     *
+     */
 
-
+    private $reservas;
     /**
      * @ORM\OneToMany(targetEntity=Prereserva::class, mappedBy="casa")
      *
      */
     private $prereservas;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Casaimages::class, mappedBy="casa")
+     *
+     */
+    private $casaimages;
+
     /**
      * @ORM\ManyToOne(targetEntity=Proprietario::class, inversedBy="casas")
      * @ORM\JoinColumn(referencedColumnName="propid",nullable=false,name="propid")
      */
-
-
     private $owner;
     /**
      * @var int
@@ -118,57 +137,9 @@ class Casa
     /**
      * @var string|null
      *
-     * @ORM\Column(name="pais", type="string", length=45, nullable=true, options={"default"="NULL"})
-     */
-    private $pais = 'NULL';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="distrito", type="string", length=45, nullable=true, options={"default"="NULL"})
-     */
-    private $distrito = 'NULL';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="endereco", type="string", length=250, nullable=true, options={"default"="NULL"})
-     */
-    private $endereco = 'NULL';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="codpostal", type="string", length=45, nullable=true, options={"default"="NULL"})
-     */
-    private $codpostal = 'NULL';
-    /**
-     * @var string|null
-     *
      * @ORM\Column(name="area", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
     private $area = 'NULL';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="lat", type="string", length=45, nullable=true, options={"default"="NULL"})
-     */
-    private $lat = 'NULL';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="lng", type="string", length=45, nullable=true, options={"default"="NULL"})
-     */
-    private $lng = 'NULL';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="altitude", type="string", length=45, nullable=true, options={"default"="NULL"})
-     */
-    private $altitude = 'NULL';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="localidade", type="string", length=45, nullable=true, options={"default"="NULL"})
-     */
-    private $localidade = 'NULL';
     /**
      * @var string|null
      *
@@ -181,84 +152,8 @@ class Casa
      * @ORM\Column(name="dist_praia", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
     private $distPraia = 'NULL';
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="piscina", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $piscina = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="televisao", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $televisao = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="ar_condicionado", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $arCondicionado = 0;
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="img_1", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
-     */
-    private $img1 = '\'images/noimage.jpg\'';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="img_2", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
-     */
-    private $img2 = '\'images/noimage.jpg\'';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="img_3", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
-     */
-    private $img3 = '\'images/noimage.jpg\'';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="img_4", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
-     */
-    private $img4 = '\'images/noimage.jpg\'';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="img_5", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
-     */
-    private $img5 = '\'images/noimage.jpg\'';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="img_6", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
-     */
-    private $img6 = '\'images/noimage.jpg\'';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="img_7", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
-     */
-    private $img7 = '\'images/noimage.jpg\'';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="img_8", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
-     */
-    private $img8 = '\'images/noimage.jpg\'';
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="img_9", type="string", length=255, nullable=false, options={"default"="'images/noimage.jpg'"})
-     */
-    private $img9 = '\'images/noimage.jpg\'';
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="img_10", type="string", length=255, nullable=false, options={"default"="'images/noimage.jpg'"})
-     */
-    private $img10 = '\'images/noimage.jpg\'';
+
+
     /**
      * @var int|null
      *
@@ -337,96 +232,7 @@ class Casa
      * @ORM\Column(name="outras_actividprox", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
     private $outrasActividprox = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="roupascama", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $roupascama = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="roupasbanho", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $roupasbanho = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="limpeza", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $limpeza = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="utilcozinha", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $utilcozinha = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="fogao", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $fogao = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="frigorif", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $frigorif = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="congel", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $congel = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="forno", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $forno = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="barbecue", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $barbecue = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="microndas", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $microndas = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="mlavaloica", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $mlavaloica = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="mlavaroupa", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $mlavaroupa = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="aqcentral", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $aqcentral = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="satcabo", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $satcabo = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="internet", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $internet = 0;
+
     /**
      * @var string|null
      *
@@ -487,42 +293,7 @@ class Casa
      * @ORM\Column(name="qtspecialoffer", type="integer", nullable=true, options={"default"=0})
      */
     private $qtspecialoffer = NULL;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="fengomar", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $fengomar = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="estacionamento", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $estacionamento = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="telefone", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $telefone = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="despertador", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $despertador = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="dvd", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $dvd = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="torradeira", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $torradeira = 0;
+
     /**
      * @var bool|0
      *
@@ -553,12 +324,7 @@ class Casa
      * @ORM\Column(name="deficientes", type="string", length=45, nullable=true, options={"default"=0})
      */
     private $deficientes = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="concelho", type="string", length=45, nullable=true, options={"default"=0})
-     */
-    private $concelho = 'NULL';
+
     /**
      * @var string|null
      *
@@ -624,6 +390,8 @@ class Casa
     {
         $this->prereservas = new ArrayCollection();
         $this->reservas = new ArrayCollection();
+        $this->casaimages = new ArrayCollection();
+        $this->casaattributes = new ArrayCollection();
     }
 
     public function getOwner()
@@ -737,53 +505,6 @@ class Casa
         return $this;
     }
 
-    public function getPais(): ?string
-    {
-        return $this->pais;
-    }
-
-    public function setPais(?string $pais): self
-    {
-        $this->pais = $pais;
-
-        return $this;
-    }
-
-    public function getDistrito(): ?string
-    {
-        return $this->distrito;
-    }
-
-    public function setDistrito(?string $distrito): self
-    {
-        $this->distrito = $distrito;
-
-        return $this;
-    }
-
-    public function getEndereco(): ?string
-    {
-        return $this->endereco;
-    }
-
-    public function setEndereco(?string $endereco): self
-    {
-        $this->endereco = $endereco;
-
-        return $this;
-    }
-
-    public function getCodpostal(): ?string
-    {
-        return $this->codpostal;
-    }
-
-    public function setCodpostal(?string $codpostal): self
-    {
-        $this->codpostal = $codpostal;
-
-        return $this;
-    }
 
     public function getArea(): ?string
     {
@@ -797,53 +518,6 @@ class Casa
         return $this;
     }
 
-    public function getLat(): ?string
-    {
-        return $this->lat;
-    }
-
-    public function setLat(?string $lat): self
-    {
-        $this->lat = $lat;
-
-        return $this;
-    }
-
-    public function getLng(): ?string
-    {
-        return $this->lng;
-    }
-
-    public function setLng(?string $lng): self
-    {
-        $this->lng = $lng;
-
-        return $this;
-    }
-
-    public function getAltitude(): ?string
-    {
-        return $this->altitude;
-    }
-
-    public function setAltitude(?string $altitude): self
-    {
-        $this->altitude = $altitude;
-
-        return $this;
-    }
-
-    public function getLocalidade(): ?string
-    {
-        return $this->localidade;
-    }
-
-    public function setLocalidade(?string $localidade): self
-    {
-        $this->localidade = $localidade;
-
-        return $this;
-    }
 
     public function getDistCentro(): ?string
     {
@@ -869,161 +543,6 @@ class Casa
         return $this;
     }
 
-    public function getPiscina(): ?bool
-    {
-        return $this->piscina;
-    }
-
-    public function setPiscina(?bool $piscina): self
-    {
-        $this->piscina = $piscina;
-
-        return $this;
-    }
-
-    public function getTelevisao(): ?bool
-    {
-        return $this->televisao;
-    }
-
-    public function setTelevisao(?bool $televisao): self
-    {
-        $this->televisao = $televisao;
-
-        return $this;
-    }
-
-    public function getArCondicionado(): ?bool
-    {
-        return $this->arCondicionado;
-    }
-
-    public function setArCondicionado(?bool $arCondicionado): self
-    {
-        $this->arCondicionado = $arCondicionado;
-
-        return $this;
-    }
-
-    public function getImg1(): ?string
-    {
-        return $this->img1;
-    }
-
-    public function setImg1(?string $img1): self
-    {
-        $this->img1 = $img1;
-
-        return $this;
-    }
-
-    public function getImg2(): ?string
-    {
-        return $this->img2;
-    }
-
-    public function setImg2(?string $img2): self
-    {
-        $this->img2 = $img2;
-
-        return $this;
-    }
-
-    public function getImg3(): ?string
-    {
-        return $this->img3;
-    }
-
-    public function setImg3(?string $img3): self
-    {
-        $this->img3 = $img3;
-
-        return $this;
-    }
-
-    public function getImg4(): ?string
-    {
-        return $this->img4;
-    }
-
-    public function setImg4(?string $img4): self
-    {
-        $this->img4 = $img4;
-
-        return $this;
-    }
-
-    public function getImg5(): ?string
-    {
-        return $this->img5;
-    }
-
-    public function setImg5(?string $img5): self
-    {
-        $this->img5 = $img5;
-
-        return $this;
-    }
-
-    public function getImg6(): ?string
-    {
-        return $this->img6;
-    }
-
-    public function setImg6(?string $img6): self
-    {
-        $this->img6 = $img6;
-
-        return $this;
-    }
-
-    public function getImg7(): ?string
-    {
-        return $this->img7;
-    }
-
-    public function setImg7(?string $img7): self
-    {
-        $this->img7 = $img7;
-
-        return $this;
-    }
-
-    public function getImg8(): ?string
-    {
-        return $this->img8;
-    }
-
-    public function setImg8(?string $img8): self
-    {
-        $this->img8 = $img8;
-
-        return $this;
-    }
-
-    public function getImg9(): ?string
-    {
-        return $this->img9;
-    }
-
-    public function setImg9(string $img9): self
-    {
-        $this->img9 = $img9;
-
-        return $this;
-    }
-
-    public function getImg10(): ?string
-    {
-        return $this->img10;
-    }
-
-    public function setImg10(string $img10): self
-    {
-        $this->img10 = $img10;
-
-        return $this;
-    }
 
     public function getQuartos(): ?int
     {
@@ -1181,185 +700,6 @@ class Casa
         return $this;
     }
 
-    public function getRoupascama(): ?bool
-    {
-        return $this->roupascama;
-    }
-
-    public function setRoupascama(?bool $roupascama): self
-    {
-        $this->roupascama = $roupascama;
-
-        return $this;
-    }
-
-    public function getRoupasbanho(): ?bool
-    {
-        return $this->roupasbanho;
-    }
-
-    public function setRoupasbanho(?bool $roupasbanho): self
-    {
-        $this->roupasbanho = $roupasbanho;
-
-        return $this;
-    }
-
-    public function getLimpeza(): ?bool
-    {
-        return $this->limpeza;
-    }
-
-    public function setLimpeza(?bool $limpeza): self
-    {
-        $this->limpeza = $limpeza;
-
-        return $this;
-    }
-
-    public function getUtilcozinha(): ?bool
-    {
-        return $this->utilcozinha;
-    }
-
-    public function setUtilcozinha(?bool $utilcozinha): self
-    {
-        $this->utilcozinha = $utilcozinha;
-
-        return $this;
-    }
-
-    public function getFogao(): ?bool
-    {
-        return $this->fogao;
-    }
-
-    public function setFogao(?bool $fogao): self
-    {
-        $this->fogao = $fogao;
-
-        return $this;
-    }
-
-    public function getFrigorif(): ?bool
-    {
-        return $this->frigorif;
-    }
-
-    public function setFrigorif(?bool $frigorif): self
-    {
-        $this->frigorif = $frigorif;
-
-        return $this;
-    }
-
-    public function getCongel(): ?bool
-    {
-        return $this->congel;
-    }
-
-    public function setCongel(?bool $congel): self
-    {
-        $this->congel = $congel;
-
-        return $this;
-    }
-
-    public function getForno(): ?bool
-    {
-        return $this->forno;
-    }
-
-    public function setForno(?bool $forno): self
-    {
-        $this->forno = $forno;
-
-        return $this;
-    }
-
-    public function getBarbecue(): ?bool
-    {
-        return $this->barbecue;
-    }
-
-    public function setBarbecue(?bool $barbecue): self
-    {
-        $this->barbecue = $barbecue;
-
-        return $this;
-    }
-
-    public function getMicrondas(): ?bool
-    {
-        return $this->microndas;
-    }
-
-    public function setMicrondas(?bool $microndas): self
-    {
-        $this->microndas = $microndas;
-
-        return $this;
-    }
-
-    public function getMlavaloica(): ?bool
-    {
-        return $this->mlavaloica;
-    }
-
-    public function setMlavaloica(?bool $mlavaloica): self
-    {
-        $this->mlavaloica = $mlavaloica;
-
-        return $this;
-    }
-
-    public function getMlavaroupa(): ?bool
-    {
-        return $this->mlavaroupa;
-    }
-
-    public function setMlavaroupa(?bool $mlavaroupa): self
-    {
-        $this->mlavaroupa = $mlavaroupa;
-
-        return $this;
-    }
-
-    public function getAqcentral(): ?bool
-    {
-        return $this->aqcentral;
-    }
-
-    public function setAqcentral(?bool $aqcentral): self
-    {
-        $this->aqcentral = $aqcentral;
-
-        return $this;
-    }
-
-    public function getSatcabo(): ?bool
-    {
-        return $this->satcabo;
-    }
-
-    public function setSatcabo(?bool $satcabo): self
-    {
-        $this->satcabo = $satcabo;
-
-        return $this;
-    }
-
-    public function getInternet(): ?bool
-    {
-        return $this->internet;
-    }
-
-    public function setInternet(?bool $internet): self
-    {
-        $this->internet = $internet;
-
-        return $this;
-    }
 
     public function getOutrosServicos(): ?string
     {
@@ -1481,77 +821,6 @@ class Casa
         return $this;
     }
 
-    public function getFengomar(): ?bool
-    {
-        return $this->fengomar;
-    }
-
-    public function setFengomar(?bool $fengomar): self
-    {
-        $this->fengomar = $fengomar;
-
-        return $this;
-    }
-
-    public function getEstacionamento(): ?bool
-    {
-        return $this->estacionamento;
-    }
-
-    public function setEstacionamento(?bool $estacionamento): self
-    {
-        $this->estacionamento = $estacionamento;
-
-        return $this;
-    }
-
-    public function getTelefone(): ?bool
-    {
-        return $this->telefone;
-    }
-
-    public function setTelefone(?bool $telefone): self
-    {
-        $this->telefone = $telefone;
-
-        return $this;
-    }
-
-    public function getDespertador(): ?bool
-    {
-        return $this->despertador;
-    }
-
-    public function setDespertador(?bool $despertador): self
-    {
-        $this->despertador = $despertador;
-
-        return $this;
-    }
-
-    public function getDvd(): ?bool
-    {
-        return $this->dvd;
-    }
-
-    public function setDvd(?bool $dvd): self
-    {
-        $this->dvd = $dvd;
-
-        return $this;
-    }
-
-    public function getTorradeira(): ?bool
-    {
-        return $this->torradeira;
-    }
-
-    public function setTorradeira(?bool $torradeira): self
-    {
-        $this->torradeira = $torradeira;
-
-        return $this;
-    }
 
     public function getAnimais(): ?bool
     {
@@ -1613,17 +882,6 @@ class Casa
         return $this;
     }
 
-    public function getConcelho(): ?string
-    {
-        return $this->concelho;
-    }
-
-    public function setConcelho(?string $concelho): self
-    {
-        $this->concelho = $concelho;
-
-        return $this;
-    }
 
     public function getAltImg1(): ?string
     {
@@ -1745,27 +1003,27 @@ class Casa
         return $this;
     }
 
-    public function addPrereserva(Prereserva $prereserva): self
-    {
-        if (!$this->prereservas->contains($prereserva)) {
-            $this->prereservas[] = $prereserva;
-            $prereserva->setPrereservas($prereserva);
-        }
+    /* public function addPrereserva(Prereserva $prereserva): self
+     {
+         if (!$this->prereservas->contains($prereserva)) {
+             $this->prereservas[] = $prereserva;
+             $prereserva->setPrereservas($prereserva);
+         }
 
-        return $this;
-    }
+         return $this;
+     }
 
-    public function removePrereserva(Prereserva $prereserva): self
-    {
-        if ($this->prereservas->removeElement($prereserva)) {
-            // set the owning side to null (unless already changed)
-            if ($prereserva->getPrereservas() === $this) {
-                $prereserva->setPrereservas(null);
-            }
-        }
+     public function removePrereserva(Prereserva $prereserva): self
+     {
+         if ($this->prereservas->removeElement($prereserva)) {
+             // set the owning side to null (unless already changed)
+             if ($prereserva->getPrereservas() === $this) {
+                 $prereserva->setPrereservas(null);
+             }
+         }
 
-        return $this;
-    }
+         return $this;
+     }*/
 
     /**
      * @return Collection|Prereserva[]
@@ -1775,5 +1033,28 @@ class Casa
         return $this->prereservas;
     }
 
+    /**
+     * @return Collection|Casaimages[]
+     */
+    public function getCasaimages(): Collection
+    {
+        return $this->casaimages;
+    }
+
+    /**
+     * @return Collection|Reserva[]
+     */
+    public function getReservas(): Collection
+    {
+        return $this->reservas;
+    }
+
+    /**
+     * @return Collection|Casaattributes[]
+     */
+    public function getCasaattributes(): Collection
+    {
+        return $this->casaattributes;
+    }
 
 }

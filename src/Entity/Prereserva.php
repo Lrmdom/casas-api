@@ -21,7 +21,11 @@ class Prereserva
      * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
      */
     private $casa;
-
+    /**
+     * @var string|null
+     * @ORM\Column(name="cod_casa", type="integer", nullable=false)
+     */
+    private $codCasa;
     /**
      * @var int
      *
@@ -52,13 +56,6 @@ class Prereserva
      */
     private $id = 'NULL';
 
-    /**
-     * @var string|null
-     * @ORM\Column(name="cod_casa", type="string", length=45, nullable=true, options={"default"="NULL"})
-     * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="prereservas")
-     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
-     */
-    private $codCasa = 'NULL';
 
     /**
      * @var string|null
