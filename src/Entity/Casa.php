@@ -30,7 +30,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  */
 #[ApiResource]
-#[ApiFilter(SearchFilter::class, properties: ['cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact', 'proprietario' => 'exact', 'propid' => 'exact'])]
 class Casa
 {
     /**
