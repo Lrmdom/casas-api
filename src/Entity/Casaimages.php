@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Casaimages
@@ -19,13 +20,12 @@ class Casaimages
      * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="casaimages")
      * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
      */
+
     private $casa;
 
     /**
      * @var string|null
      * @ORM\Column(name="cod_casa", type="integer",  nullable=true, options={"default"="NULL"})
-     * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="casaimages")
-     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
      */
     private $codCasa = 'NULL';
 
@@ -70,4 +70,13 @@ class Casaimages
         return $this;
     }
 
+    public function getCasa()
+    {
+        return $this->casa;
+    }
+
+    public function setCasa($casa)
+    {
+        $this->casa = $casa;
+    }
 }

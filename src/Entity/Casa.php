@@ -392,6 +392,7 @@ class Casa
         $this->reservas = new ArrayCollection();
         $this->casaimages = new ArrayCollection();
         $this->casaattributes = new ArrayCollection();
+        $this->casageodata = new ArrayCollection();
     }
 
     public function getOwner()
