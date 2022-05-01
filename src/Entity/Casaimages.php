@@ -16,6 +16,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Casaimages
 {
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
     /**
      * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="casaimages")
      * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
@@ -29,14 +39,6 @@ class Casaimages
      */
     private $codCasa = 'NULL';
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
 
     /**
      * @var string|null
@@ -78,5 +80,15 @@ class Casaimages
     public function setCasa($casa)
     {
         $this->casa = $casa;
+    }
+
+    public function getCodCasa()
+    {
+        return $this->codCasa;
+    }
+
+    public function setCodCasa($CodCasa)
+    {
+        $this->CodCasa = $CodCasa;
     }
 }

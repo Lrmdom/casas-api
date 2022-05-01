@@ -10,7 +10,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *
  * @ORM\Table(name="alert")
  * @ORM\Entity
- * 
+ *
  * @ApiResource()
  */
 class Alert
@@ -69,23 +69,23 @@ class Alert
     /**
      * @var bool
      *
-     * @ORM\Column(name="for_rent", type="boolean", nullable=false)
+     * @ORM\Column(name="for_rent", type="boolean", nullable=false, options={"default"=0}))
      */
-    private $forRent;
+    private $forRent = 0;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="for_sale", type="boolean", nullable=false)
+     * @ORM\Column(name="for_sale", type="boolean", nullable=false, options={"default"=0}))
      */
-    private $forSale;
+    private $forSale = 0;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="for_arrenda", type="boolean", nullable=false)
+     * @ORM\Column(name="for_arrenda", type="boolean", nullable=false, options={"default"=0}))
      */
-    private $forArrenda;
+    private $forArrenda = 0;
 
     /**
      * @var int|null
