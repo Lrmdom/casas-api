@@ -92,6 +92,18 @@ class Casageodata
      */
     private $concelho = 'NULL';
 
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+
+    public function setId($id): self
+    {
+        $this->lat = $id;
+
+        return $this;
+    }
+
     public function getLat(): ?string
     {
         return $this->lat;
