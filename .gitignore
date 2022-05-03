@@ -11,8 +11,9 @@
 /.history/
 /.symfony/
 
-/docker/mysql/var/
+/docker/mysql/
 /src/.history/
 /.history/
 /.history/src/Controller/
 /.history/src/
+/docker/mysql/var/lib/mysql/
