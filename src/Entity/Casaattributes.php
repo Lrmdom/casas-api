@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Casaattributes
@@ -16,79 +17,89 @@ use ApiPlatform\Core\Annotation\ApiResource;
 class Casaattributes
 {
     /**
+     * @ORM\OneToOne(targetEntity=Casa::class, inversedBy="casaattributes")
+     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
+     */
+    private $casa;
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[Groups(['casa'])]
     private $id;
-    /**
-     * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="casaattributes")
-     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
-     */
-    private $casa;
-
     /**
      * @var string|null
      * @ORM\Column(name="cod_casa", type="integer",  nullable=true, options={"default"="NULL"})
-     * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="casaattributes")
+     * @ORM\OneToOne(targetEntity=Casa::class, inversedBy="casaattributes")
      * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
      */
+    #[Groups(['casa'])]
     private $codCasa = 'NULL';
     /**
      * @var bool|0
      *
      * @ORM\Column(name="piscina", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $piscina = 0;
     /**
      * @var bool|0
      *
      * @ORM\Column(name="televisao", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $televisao = 0;
     /**
      * @var bool|0
      *
      * @ORM\Column(name="ar_condicionado", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $arCondicionado = 0;
     /**
      * @var bool|0
      *
      * @ORM\Column(name="roupascama", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $roupascama = 0;
     /**
      * @var bool|0
      *
      * @ORM\Column(name="roupasbanho", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $roupasbanho = 0;
     /**
      * @var bool|0
      *
      * @ORM\Column(name="limpeza", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $limpeza = 0;
     /**
      * @var bool|0
      *
      * @ORM\Column(name="utilcozinha", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $utilcozinha = 0;
     /**
      * @var bool|0
      *
      * @ORM\Column(name="fogao", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $fogao = 0;
     /**
      * @var bool|0
      *
      * @ORM\Column(name="frigorif", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $frigorif = 0;
     /**
      * @var bool|0
@@ -481,5 +492,25 @@ class Casaattributes
         return $this;
     }
 
+    public function getCodCasa(): ?int
+    {
+        return $this->codCasa;
+    }
 
+    public function setCodCasa(?int $codCasa): self
+    {
+        $this->codCasa = $codCasa;
+
+        return $this;
+    }
+
+    public function getCasa()
+    {
+        return $this->casa;
+    }
+
+    public function setCasa($casa)
+    {
+        $this->casa = $casa;
+    }
 }

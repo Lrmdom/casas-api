@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Casaamenities
 {
     /**
-     * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="casaamenities")
+     * @ORM\OneToOne(targetEntity=Casa::class, inversedBy="casaamenities")
      * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
      */
     private $casa;
@@ -89,14 +89,14 @@ class Casaamenities
     #[Groups(['casa'])]
     private $deficientes = 0;
 
-    public function getId(): ?string
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     public function setId($id): self
     {
-        $this->lat = $id;
+        $this->id = $id;
 
         return $this;
     }

@@ -46,7 +46,7 @@ class Casa
     #[Groups(['casa'])]
     private $casageodatas;
     /**
-     * @ORM\OneToMany(targetEntity=Casaattributes::class, mappedBy="casa")
+     * @ORM\OneToOne(targetEntity=Casaattributes::class, mappedBy="casa")
      *
      */
     #[Groups(['casa'])]
@@ -269,6 +269,7 @@ class Casa
      * @ORM\Column(name="titulo", type="string", length=600, nullable=true, options={"default"= 0})
      */
     #[Groups(['casa'])]
+    #[ApiFilter(SearchFilter::class, strategy: 'ipartial')]
     private $titulo = 0;
     /**
      * @var int|null
@@ -363,8 +364,8 @@ class Casa
         $this->prereservas = new ArrayCollection();
         $this->reservas = new ArrayCollection();
         $this->casaimages = new ArrayCollection();
-        $this->casaattributes = new ArrayCollection();
-        /*$this->casageodata = new ArrayCollection();
+        /*$this->casaattributes = new ArrayCollection();
+        $this->casageodata = new ArrayCollection();
         $this->casaamenities = new ArrayCollection();*/
     }
 
@@ -863,7 +864,7 @@ class Casa
 
     public function setAnoconstrucao(int $anoconstrucao): self
     {
-        $this->anoconstrucao = anoconstrucao;
+        $this->anoconstrucao = $anoconstrucao;
 
         return $this;
     }
@@ -917,7 +918,7 @@ class Casa
     /**
      * @return Collection|Casaattributes[]
      */
-    public function getCasaattributes(): Collection
+    public function getCasaattributes()
     {
         return $this->casaattributes;
     }
