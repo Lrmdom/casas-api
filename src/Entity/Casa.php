@@ -29,8 +29,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource()
  *
  */
-#[ApiFilter(SearchFilter::class, properties: ['cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact', 'proprietario' => 'exact', 'propid' => 'exact'])]
-#[ApiResource(normalizationContext: ['groups' => ['casa']])]
+#[ApiFilter(SearchFilter::class, properties: ['titulo' => 'partial', 'cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact', 'proprietario' => 'exact', 'propid' => 'exact'])]
+#[ApiFilter(OrderFilter::class, properties: ['tipo', 'cod_casa'])]
+#[ApiResource(
+    normalizationContext: ['groups' => ['casa']],
+    itemOperations: ['get', 'patch', 'put']  //try with refine
+
+)]
 class Casa
 {
     /**
@@ -69,6 +74,7 @@ class Casa
      * @ORM\JoinColumn(referencedColumnName="codCasa",nullable=false,name="codCasa")
      */
     #[Groups(['casa'])]
+    #[ApiSubresource]
     private iterable $casaimages;
 
     /**
@@ -269,7 +275,6 @@ class Casa
      * @ORM\Column(name="titulo", type="string", length=600, nullable=true, options={"default"= 0})
      */
     #[Groups(['casa'])]
-    #[ApiFilter(SearchFilter::class, strategy: 'ipartial')]
     private $titulo = 0;
     /**
      * @var int|null
