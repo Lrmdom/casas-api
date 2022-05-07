@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Casaamenities
@@ -29,11 +30,12 @@ class Casaamenities
      */
     private $id;
     /**
-     * @var string|null
+     * @var int|null
      * @ORM\Column(name="cod_casa", type="integer",  nullable=true, options={"default"="NULL"})
-     * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="casaamenities")
+     * @ORM\OneToOne(targetEntity=Casa::class, inversedBy="casaamenities")
      * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
      */
+    #[Groups(['casa'])]
     private $codCasa = 'NULL';
 
 
@@ -42,42 +44,49 @@ class Casaamenities
      *
      * @ORM\Column(name="quartos", type="integer", nullable=true, options={"default"="NULL"})
      */
+    #[Groups(['casa'])]
     private $quartos = NULL;
     /**
      * @var int|null
      *
      * @ORM\Column(name="camascasal", type="integer", nullable=true, options={"default"="NULL"})
      */
+    #[Groups(['casa'])]
     private $camascasal = NULL;
     /**
      * @var int|null
      *
      * @ORM\Column(name="camassingle", type="integer", nullable=true, options={"default"="NULL"})
      */
+    #[Groups(['casa'])]
     private $camassingle = NULL;
     /**
      * @var int|null
      *
      * @ORM\Column(name="casasbanho", type="integer", nullable=true, options={"default"="NULL"})
      */
+    #[Groups(['casa'])]
     private $casasbanho = 0;
     /**
      * @var bool|0
      *
      * @ORM\Column(name="animais", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $animais = 0;
     /**
      * @var bool|0
      *
      * @ORM\Column(name="fumadores", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $fumadores = 0;
     /**
      * @var string|null
      *
      * @ORM\Column(name="deficientes", type="string", length=45, nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $deficientes = 0;
 
     public function getId(): ?string
@@ -88,6 +97,18 @@ class Casaamenities
     public function setId($id): self
     {
         $this->lat = $id;
+
+        return $this;
+    }
+
+    public function getCodCasa(): ?int
+    {
+        return $this->codCasa;
+    }
+
+    public function setCodCasa(?int $codCasa): self
+    {
+        $this->codCasa = $codCasa;
 
         return $this;
     }
@@ -174,5 +195,15 @@ class Casaamenities
         $this->deficientes = $deficientes;
 
         return $this;
+    }
+
+    public function getCasa()
+    {
+        return $this->casa;
+    }
+
+    public function setCasa($casa)
+    {
+        $this->casa = $casa;
     }
 }

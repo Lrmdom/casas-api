@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Casageodata
@@ -27,6 +28,7 @@ class Casageodata
      * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="casageodata")
      * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
      */
+    #[Groups(['casa'])]
     private $codCasa = 'NULL';
     /**
      * @var int
@@ -35,18 +37,21 @@ class Casageodata
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+    #[Groups(['casa'])]
     private $id;
     /**
      * @var string|null
      *
      * @ORM\Column(name="pais", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
+    #[Groups(['casa'])]
     private $pais = 'NULL';
     /**
      * @var string|null
      *
      * @ORM\Column(name="distrito", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
+    #[Groups(['casa'])]
     private $distrito = 'NULL';
     /**
      * @var string|null
@@ -84,12 +89,14 @@ class Casageodata
      *
      * @ORM\Column(name="localidade", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
+    #[Groups(['casa'])]
     private $localidade = 'NULL';
     /**
      * @var bool|0
      *
      * @ORM\Column(name="concelho", type="string", length=45, nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $concelho = 'NULL';
 
     /**
@@ -248,5 +255,25 @@ class Casageodata
         $this->codpostal = $codpostal;
 
         return $this;
+    }
+
+    public function getCasa()
+    {
+        return $this->casa;
+    }
+
+    public function setCasa($casa)
+    {
+        $this->casa = $casa;
+    }
+
+    public function getCodCasa()
+    {
+        return $this->codCasa;
+    }
+
+    public function setCodCasa($codCasa)
+    {
+        $this->casa = $codCasa;
     }
 }

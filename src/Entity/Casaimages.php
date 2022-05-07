@@ -34,7 +34,7 @@ class Casaimages
     private $casa;
 
     /**
-     * @var string|null
+     * @var int|null
      * @ORM\Column(name="cod_casa", type="integer",  nullable=true, options={"default"="NULL"})
      */
     private $codCasa = 'NULL';
@@ -45,7 +45,7 @@ class Casaimages
      *
      * @ORM\Column(name="img1", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
      */
-
+    #[Groups(['casa'])]
     private $img1 = '\'images/noimage.jpg\'';
 
 
@@ -83,13 +83,15 @@ class Casaimages
         $this->casa = $casa;
     }
 
-    public function getCodCasa()
+    public function getCodCasa(): ?int
     {
         return $this->codCasa;
     }
 
-    public function setCodCasa($CodCasa)
+    public function setCodCasa(?int $codCasa): self
     {
-        $this->CodCasa = $CodCasa;
+        $this->codCasa = $codCasa;
+
+        return $this;
     }
 }

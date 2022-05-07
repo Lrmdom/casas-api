@@ -29,41 +29,47 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource()
  *
  */
-#[ApiFilter(SearchFilter::class, properties: ['activo' => 'exact', 'cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact', 'proprietario' => 'exact', 'propid' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact', 'proprietario' => 'exact', 'propid' => 'exact'])]
+#[ApiResource(normalizationContext: ['groups' => ['casa']])]
 class Casa
 {
     /**
-     * @ORM\OneToMany(targetEntity=Casaamenities::class, mappedBy="casa")
+     * @ORM\OneToOne(targetEntity=Casaamenities::class, mappedBy="casa")
      *
      */
+    #[Groups(['casa'])]
     private $casaamenities;
     /**
      * @ORM\OneToMany(targetEntity=Casageodata::class, mappedBy="casa")
      *
      */
-    private $casageodata;
+    #[Groups(['casa'])]
+    private $casageodatas;
     /**
      * @ORM\OneToMany(targetEntity=Casaattributes::class, mappedBy="casa")
      *
      */
+    #[Groups(['casa'])]
     private $casaattributes;
     /**
      * @ORM\OneToMany(targetEntity=Reserva::class, mappedBy="casa")
      *
      */
-
+    #[Groups(['casa'])]
     private $reservas;
     /**
      * @ORM\OneToMany(targetEntity=Prereserva::class, mappedBy="casa")
      *
      */
+    #[Groups(['casa'])]
     private $prereservas;
 
     /**
      * @ORM\OneToMany(targetEntity=Casaimages::class, mappedBy="casa")
      * @ORM\JoinColumn(referencedColumnName="codCasa",nullable=false,name="codCasa")
      */
-    private $casaimages;
+    #[Groups(['casa'])]
+    private iterable $casaimages;
 
     /**
      * @ORM\ManyToOne(targetEntity=Proprietario::class, inversedBy="casas")
@@ -80,6 +86,8 @@ class Casa
      * ApiFilter(SearchFilter::class, strategy: 'ipartial')
      */
 
+    #[ApiFilter(SearchFilter::class, strategy: "exact")]
+    #[Groups(['casa'])]
     private $codCasa;
     /**
      * @var string|null
@@ -101,12 +109,14 @@ class Casa
      *
      * ApiFilter(SearchFilter::class, strategy: 'ipartial')
      */
+    #[Groups(['casa'])]
     private $destino = 'NULL';
     /**
      * @var int|null
      *
      * @ORM\Column(name="proprietario", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
+    #[Groups(['casa'])]
     private $proprietario = 'NULL';
     /**
      * @var int|null
@@ -133,6 +143,7 @@ class Casa
      *
      * @ORM\Column(name="tipo", type="integer", length=45, nullable=true, options={"default"="NULL"})
      */
+    #[Groups(['casa'])]
     private $tipo = 'NULL';
     /**
      * @var int|null
@@ -226,6 +237,7 @@ class Casa
      *
      * @ORM\Column(name="activo", type="boolean", nullable=true, options={"default"=0})
      */
+    #[ApiFilter(SearchFilter::class, strategy: "exact")]
     private $activo = 0;
     /**
      * @var bool|null
@@ -256,6 +268,7 @@ class Casa
      *
      * @ORM\Column(name="titulo", type="string", length=600, nullable=true, options={"default"= 0})
      */
+    #[Groups(['casa'])]
     private $titulo = 0;
     /**
      * @var int|null
@@ -270,6 +283,7 @@ class Casa
      *
      * @ORM\Column(name="caucao", type="boolean", nullable=true, options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $caucao = 0;
     /**
      * @var bool|0
@@ -290,18 +304,21 @@ class Casa
      *
      * @ORM\Column(name="for_sale", type="boolean", nullable=false)
      */
+    #[Groups(['casa'])]
     private $forSale = 0;
     /**
      * @var bool
      *
      * @ORM\Column(name="for_rent", type="boolean", nullable=false , options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $forRent = 0;
     /**
      * @var bool
      *
      * @ORM\Column(name="for_arrenda", type="boolean", nullable=false , options={"default"=0})
      */
+    #[Groups(['casa'])]
     private $forArrenda = 0;
     /**
      * @var int|0
@@ -320,6 +337,7 @@ class Casa
      *
      * @ORM\Column(name="certif_energ", type="boolean", nullable=false)
      */
+    #[Groups(['casa'])]
     private $certifEnerg = 0;
     /**
      * @var string
@@ -336,9 +354,9 @@ class Casa
     /**
      * @var int
      *
-     * @ORM\Column(name="anoConstrucao", type="integer", nullable=false)
+     * @ORM\Column(name="anoconstrucao", type="integer", nullable=false)
      */
-    private $anoContrucao = 0;
+    private $anoconstrucao = 0;
 
     public function __construct()
     {
@@ -346,7 +364,8 @@ class Casa
         $this->reservas = new ArrayCollection();
         $this->casaimages = new ArrayCollection();
         $this->casaattributes = new ArrayCollection();
-        $this->casageodata = new ArrayCollection();
+        /*$this->casageodata = new ArrayCollection();
+        $this->casaamenities = new ArrayCollection();*/
     }
 
     public function getOwner()
@@ -837,14 +856,14 @@ class Casa
         return $this;
     }
 
-    public function getAno(): ?int
+    public function getAnoconstrucao(): ?int
     {
-        return $this->ano;
+        return $this->anoconstrucao;
     }
 
-    public function setAno(int $ano): self
+    public function setAnoconstrucao(int $anoconstrucao): self
     {
-        $this->ano = $ano;
+        $this->anoconstrucao = anoconstrucao;
 
         return $this;
     }
@@ -902,5 +921,22 @@ class Casa
     {
         return $this->casaattributes;
     }
+
+    /**
+     * @return Collection|Casaamenities[]
+     */
+    public function getCasaamenities()/*: Collection*/
+    {
+        return $this->casaamenities;
+    }
+
+    /**
+     * @return Collection|Casageodatas[]
+     */
+    public function getCasageodatas(): Collection
+    {
+        return $this->casageodatas;
+    }
+
 
 }
