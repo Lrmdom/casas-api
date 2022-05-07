@@ -45,6 +45,7 @@ class Casaimages
      *
      * @ORM\Column(name="img1", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
      */
+
     private $img1 = '\'images/noimage.jpg\'';
 
 

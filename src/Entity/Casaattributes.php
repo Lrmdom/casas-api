@@ -181,6 +181,18 @@ class Casaattributes
      */
     private $torradeira = 0;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getRoupascama(): ?bool
     {
         return $this->roupascama;

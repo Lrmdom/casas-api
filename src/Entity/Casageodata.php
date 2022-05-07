@@ -92,6 +92,20 @@ class Casageodata
      */
     private $concelho = 'NULL';
 
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="distCentro", type="string", length=45, nullable=true, options={"default"="NULL"})
+     */
+    private $distCentro = 'NULL';
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="distPraia", type="string", length=45, nullable=true, options={"default"="NULL"})
+     */
+    private $distPraia = 'NULL';
+
     public function getId(): ?string
     {
         return $this->id;
@@ -100,6 +114,30 @@ class Casageodata
     public function setId($id): self
     {
         $this->lat = $id;
+
+        return $this;
+    }
+
+    public function getdistPraia(): ?string
+    {
+        return $this->distPraia;
+    }
+
+    public function setdistPraia($distPraia): self
+    {
+        $this->lat = $distPraia;
+
+        return $this;
+    }
+
+    public function getdistCentro(): ?string
+    {
+        return $this->distPraia;
+    }
+
+    public function setdistCentro($distCentro): self
+    {
+        $this->lat = $distCentro;
 
         return $this;
     }

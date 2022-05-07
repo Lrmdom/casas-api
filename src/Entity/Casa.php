@@ -29,10 +29,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource()
  *
  */
-#[ApiResource]
-#[ApiFilter(SearchFilter::class, properties: ['cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact', 'proprietario' => 'exact', 'propid' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['activo' => 'exact', 'cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact', 'proprietario' => 'exact', 'propid' => 'exact'])]
 class Casa
 {
+    /**
+     * @ORM\OneToMany(targetEntity=Casaamenities::class, mappedBy="casa")
+     *
+     */
+    private $casaamenities;
     /**
      * @ORM\OneToMany(targetEntity=Casageodata::class, mappedBy="casa")
      *
@@ -57,7 +61,7 @@ class Casa
 
     /**
      * @ORM\OneToMany(targetEntity=Casaimages::class, mappedBy="casa")
-     *
+     * @ORM\JoinColumn(referencedColumnName="codCasa",nullable=false,name="codCasa")
      */
     private $casaimages;
 
@@ -65,6 +69,7 @@ class Casa
      * @ORM\ManyToOne(targetEntity=Proprietario::class, inversedBy="casas")
      * @ORM\JoinColumn(referencedColumnName="propid",nullable=false,name="propid")
      */
+
     private $owner;
     /**
      * @var int
@@ -74,6 +79,7 @@ class Casa
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * ApiFilter(SearchFilter::class, strategy: 'ipartial')
      */
+
     private $codCasa;
     /**
      * @var string|null
@@ -140,44 +146,8 @@ class Casa
      * @ORM\Column(name="area", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
     private $area = 'NULL';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="dist_centro", type="string", length=45, nullable=true, options={"default"="NULL"})
-     */
-    private $distCentro = 'NULL';
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="dist_praia", type="string", length=45, nullable=true, options={"default"="NULL"})
-     */
-    private $distPraia = 'NULL';
 
 
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="quartos", type="integer", nullable=true, options={"default"="NULL"})
-     */
-    private $quartos = NULL;
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="camascasal", type="integer", nullable=true, options={"default"="NULL"})
-     */
-    private $camascasal = NULL;
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="camassingle", type="integer", nullable=true, options={"default"="NULL"})
-     */
-    private $camassingle = NULL;
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="casasbanho", type="integer", nullable=true, options={"default"="NULL"})
-     */
-    private $casasbanho = 0;
     /**
      * @var bool|0
      *
@@ -294,18 +264,7 @@ class Casa
      */
     private $qtspecialoffer = NULL;
 
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="animais", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $animais = 0;
-    /**
-     * @var bool|0
-     *
-     * @ORM\Column(name="fumadores", type="boolean", nullable=true, options={"default"=0})
-     */
-    private $fumadores = 0;
+
     /**
      * @var bool|0
      *
@@ -318,12 +277,7 @@ class Casa
      * @ORM\Column(name="valorcaucao", type="string", length=10, nullable=true, options={"default"= 0})
      */
     private $valorcaucao = 0;
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="deficientes", type="string", length=45, nullable=true, options={"default"=0})
-     */
-    private $deficientes = 0;
+
 
     /**
      * @var string|null
@@ -366,13 +320,13 @@ class Casa
      *
      * @ORM\Column(name="certif_energ", type="boolean", nullable=false)
      */
-    private $certifEnerg;
+    private $certifEnerg = 0;
     /**
      * @var string
      *
      * @ORM\Column(name="certif_energ_level", type="string", length=5, nullable=false)
      */
-    private $certifEnergLevel;
+    private $certifEnergLevel = 0;
     /**
      * @var string
      *
@@ -382,9 +336,9 @@ class Casa
     /**
      * @var int
      *
-     * @ORM\Column(name="ano", type="integer", nullable=false)
+     * @ORM\Column(name="anoConstrucao", type="integer", nullable=false)
      */
-    private $ano;
+    private $anoContrucao = 0;
 
     public function __construct()
     {
@@ -519,79 +473,6 @@ class Casa
         return $this;
     }
 
-
-    public function getDistCentro(): ?string
-    {
-        return $this->distCentro;
-    }
-
-    public function setDistCentro(?string $distCentro): self
-    {
-        $this->distCentro = $distCentro;
-
-        return $this;
-    }
-
-    public function getDistPraia(): ?string
-    {
-        return $this->distPraia;
-    }
-
-    public function setDistPraia(?string $distPraia): self
-    {
-        $this->distPraia = $distPraia;
-
-        return $this;
-    }
-
-
-    public function getQuartos(): ?int
-    {
-        return $this->quartos;
-    }
-
-    public function setQuartos(?int $quartos): self
-    {
-        $this->quartos = $quartos;
-
-        return $this;
-    }
-
-    public function getCamascasal(): ?int
-    {
-        return $this->camascasal;
-    }
-
-    public function setCamascasal(?int $camascasal): self
-    {
-        $this->camascasal = $camascasal;
-
-        return $this;
-    }
-
-    public function getCamassingle(): ?int
-    {
-        return $this->camassingle;
-    }
-
-    public function setCamassingle(?int $camassingle): self
-    {
-        $this->camassingle = $camassingle;
-
-        return $this;
-    }
-
-    public function getCasasbanho(): ?int
-    {
-        return $this->casasbanho;
-    }
-
-    public function setCasasbanho(?int $casasbanho): self
-    {
-        $this->casasbanho = $casasbanho;
-
-        return $this;
-    }
 
     public function getGolf(): ?bool
     {
@@ -823,30 +704,6 @@ class Casa
     }
 
 
-    public function getAnimais(): ?bool
-    {
-        return $this->animais;
-    }
-
-    public function setAnimais(?bool $animais): self
-    {
-        $this->animais = $animais;
-
-        return $this;
-    }
-
-    public function getFumadores(): ?bool
-    {
-        return $this->fumadores;
-    }
-
-    public function setFumadores(?bool $fumadores): self
-    {
-        $this->fumadores = $fumadores;
-
-        return $this;
-    }
-
     public function getCaucao(): ?bool
     {
         return $this->caucao;
@@ -867,18 +724,6 @@ class Casa
     public function setValorcaucao(?string $valorcaucao): self
     {
         $this->valorcaucao = $valorcaucao;
-
-        return $this;
-    }
-
-    public function getDeficientes(): ?string
-    {
-        return $this->deficientes;
-    }
-
-    public function setDeficientes(?string $deficientes): self
-    {
-        $this->deficientes = $deficientes;
 
         return $this;
     }
