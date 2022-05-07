@@ -40,7 +40,7 @@ class Casa
     #[Groups(['casa'])]
     private $casaamenities;
     /**
-     * @ORM\OneToMany(targetEntity=Casageodata::class, mappedBy="casa")
+     * @ORM\OneToOne(targetEntity=Casageodata::class, mappedBy="casa")
      *
      */
     #[Groups(['casa'])]
@@ -933,7 +933,7 @@ class Casa
     /**
      * @return Collection|Casageodatas[]
      */
-    public function getCasageodatas(): Collection
+    public function getCasageodatas()
     {
         return $this->casageodatas;
     }
