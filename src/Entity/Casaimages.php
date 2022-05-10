@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ApiResource()
  */
-#[ApiFilter(SearchFilter::class, properties: ['casa.codCasa' => SearchFilter::STRATEGY_EXACT])]
+//#[ApiFilter(SearchFilter::class, properties: ['casa.codCasa' => SearchFilter::STRATEGY_EXACT])]
 // todo this to other relations to enable url that do search on relation ...
 class Casaimages
 {
@@ -37,19 +37,44 @@ class Casaimages
     private $casa;
 
     /**
-     * @var int|null
-     * @ORM\Column(name="cod_casa", type="integer",  nullable=true, options={"default"="NULL"})
+     * @var string|null
+     * @ORM\Column(name="cod_casa", type="integer",  length=11, nullable=false)
      */
-    private $codCasa = 'NULL';
+
+    private $codCasa;
 
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="img1", type="string", length=255, nullable=true, options={"default"="'images/noimage.jpg'"})
+     * @ORM\Column(name="img1", type="string", length=255, nullable=true, options={"default"="images/noimage.jpg"})
      */
     #[Groups(['casa'])]
     private $img1 = '\'images/noimage.jpg\'';
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="path", type="string", length=255, nullable=true, options={"default"="images/noimage.jpg"})
+     */
+    #[Groups(['casa'])]
+    private $path = '\'images/noimage.jpg\'';
+
+    /**
+     * @return string|null
+     */
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    /**
+     * @param string|null $path
+     */
+    public function setPath(?string $path): void
+    {
+        $this->path = $path;
+    }
 
 
     public function getImg1(): ?string
