@@ -14,8 +14,9 @@ use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
+use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 
-class ApiTokenAuthenticator extends AbstractAuthenticator
+class ApiTokenAuthenticator extends AbstractAuthenticator implements AuthenticationEntryPointInterface
 {
 
     /**
@@ -30,7 +31,7 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
 
     public function supports(Request $request): ?bool
     {
-        return $request->headers->has('x-api-token');
+        return str_starts_with($request->getPathInfo(), '/api/');
     }
 
     public function authenticate(Request $request): Passport
@@ -41,16 +42,16 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
 
             throw new CustomUserMessageAuthenticationException('No API token provided');
         }
-
+        echo('111');
         return new SelfValidatingPassport(
             new UserBadge($apiToken, function ($apiToken) {
                 $user = $this->userRepository->findByApiToken($apiToken);
-
+                echo('1111');
                 if (!$user) {
-
+                    echo('111111');
                     throw new UserNotFoundException();
                 }
-
+                echo('1112222');
                 return $user;
             })
         );
@@ -70,14 +71,14 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
     }
 
-//    public function start(Request $request, AuthenticationException $authException = null): Response
-//    {
-//        /*
-//         * If you would like this class to control what happens when an anonymous user accesses a
-//         * protected page (e.g. redirect to /login), uncomment this method and make this class
-//         * implement Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface.
-//         *
-//         * For more details, see https://symfony.com/doc/current/security/experimental_authenticators.html#configuring-the-authentication-entry-point
-//         */
-//    }
+    public function start(Request $request, AuthenticationException $authException = null): Response
+    {
+        /*
+         * If you would like this class to control what happens when an anonymous user accesses a
+         * protected page (e.g. redirect to /login), uncomment this method and make this class
+         * implement Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface.
+         *
+         * For more details, see https://symfony.com/doc/current/security/experimental_authenticators.html#configuring-the-authentication-entry-point
+         */
+    }
 }
