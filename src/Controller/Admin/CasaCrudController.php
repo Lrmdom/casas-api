@@ -44,40 +44,39 @@ class CasaCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-        //->add(BooleanField::new('activo'))
-        ->add('localidade')
-        ->add('proprietario')
-        ->add('adicionado')
-        ->add('activo');
-        
-    } 
-   //  public function configureFields(string $pageName): iterable
-   // {
-        #yield AssociationField::new('propid');
-       /*  yield TextField::new('tipo');
-        yield EmailField::new('proprietario');
-        yield TextareaField::new('designacao')
-            ->hideOnIndex()
-        ;
-        yield TextField::new('foto_1')
-            ->onlyOnIndex() */
-        //;
-        /* yield AssociationField::new('propid')
-                ->setFormTypeOptions([
-                    'by_reference' => false,
-                ])
-        ; */
-        //yield AssociationField::new('propid', 'propid');
+            //->add(BooleanField::new('activo'))
+            ->add('proprietario')
+            ->add('adicionado')
+            ->add('activo');
 
-       /*   $createdAt = DateTimeField::new('createdAt')->setFormTypeOptions([
-            'html5' => true,
-            'years' => range(date('Y'), date('Y') + 5),
-            'widget' => 'single_text',
-        ]);
-        if (Crud::PAGE_EDIT === $pageName) {
-            yield $createdAt->setFormTypeOption('disabled', true);
-        } else {
-            yield $createdAt;
-        }  */
-   // } 
+    }
+    //  public function configureFields(string $pageName): iterable
+    // {
+    #yield AssociationField::new('propid');
+    /*  yield TextField::new('tipo');
+     yield EmailField::new('proprietario');
+     yield TextareaField::new('designacao')
+         ->hideOnIndex()
+     ;
+     yield TextField::new('foto_1')
+         ->onlyOnIndex() */
+    //;
+    /* yield AssociationField::new('propid')
+            ->setFormTypeOptions([
+                'by_reference' => false,
+            ])
+    ; */
+    //yield AssociationField::new('propid', 'propid');
+
+    /*   $createdAt = DateTimeField::new('createdAt')->setFormTypeOptions([
+         'html5' => true,
+         'years' => range(date('Y'), date('Y') + 5),
+         'widget' => 'single_text',
+     ]);
+     if (Crud::PAGE_EDIT === $pageName) {
+         yield $createdAt->setFormTypeOption('disabled', true);
+     } else {
+         yield $createdAt;
+     }  */
+    // }
 }

@@ -98,10 +98,10 @@ class Casa
     /**
      * @var string|null
      *
-     * @ORM\Column(name="adicionado", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="adicionado", type="string", length=45, nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    #[Assert\NotBlank]
-    private $adicionado = 'NULL';
+
+    private $adicionado = 'CURRENT_TIMESTAMP';
     /**
      * @var string|null
      *
@@ -137,6 +137,7 @@ class Casa
      *
      * @ORM\Column(name="designacao", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
+    #[Assert\NotBlank]
     private $designacao = 'NULL';
     /**
      * @var string|null
@@ -335,7 +336,7 @@ class Casa
     /**
      * @var int|null
      *
-     * @ORM\Column(name="valor_venda", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="valor_venda", type="string", nullable=true, options={"default"="NULL"})
      */
     private $valorVenda = NULL;
     /**
@@ -814,12 +815,12 @@ class Casa
         return $this;
     }
 
-    public function getValorVenda(): ?int
+    public function getValorVenda(): ?string
     {
         return $this->valorVenda;
     }
 
-    public function setValorVenda(?int $valorVenda): self
+    public function setValorVenda(?string $valorVenda): self
     {
         $this->valorVenda = $valorVenda;
 
