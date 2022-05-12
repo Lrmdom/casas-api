@@ -10,13 +10,18 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Guard\Token\GuardTokenInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+use Symfony\Component\Security\Guard\AuthenticatorInterface;
 
-class ApiTokenAuthenticator extends AbstractAuthenticator implements AuthenticationEntryPointInterface
+
+class ApiTokenAuthenticator implements AuthenticatorInterface
 {
 
     /**
@@ -42,7 +47,6 @@ class ApiTokenAuthenticator extends AbstractAuthenticator implements Authenticat
 
             throw new CustomUserMessageAuthenticationException('No API token provided');
         }
-        echo('111');
         return new SelfValidatingPassport(
             new UserBadge($apiToken, function ($apiToken) {
                 $user = $this->userRepository->findByApiToken($apiToken);
@@ -70,6 +74,7 @@ class ApiTokenAuthenticator extends AbstractAuthenticator implements Authenticat
 
     public function start(Request $request, AuthenticationException $authException = null): Response
     {
+        echo "test";
         /*
          * If you would like this class to control what happens when an anonymous user accesses a
          * protected page (e.g. redirect to /login), uncomment this method and make this class
@@ -77,5 +82,30 @@ class ApiTokenAuthenticator extends AbstractAuthenticator implements Authenticat
          *
          * For more details, see https://symfony.com/doc/current/security/experimental_authenticators.html#configuring-the-authentication-entry-point
          */
+    }
+
+    public function getCredentials(Request $request)
+    {
+        // TODO: Implement getCredentials() method.
+    }
+
+    public function getUser($credentials, UserProviderInterface $userProvider)
+    {
+        // TODO: Implement getUser() method.
+    }
+
+    public function checkCredentials($credentials, UserInterface $user)
+    {
+        // TODO: Implement checkCredentials() method.
+    }
+
+    public function supportsRememberMe()
+    {
+        // TODO: Implement supportsRememberMe() method.
+    }
+
+    public function createAuthenticatedToken(UserInterface $user, string $providerKey)
+    {
+        // TODO: Implement createAuthenticatedToken() method.
     }
 }
