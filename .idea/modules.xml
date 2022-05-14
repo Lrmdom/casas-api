@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/casas-api.iml" filepath="$PROJECT_DIR$/.idea/casas-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../casas/.idea/casasRemote.iml" filepath="$PROJECT_DIR$/../casas/.idea/casasRemote.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../casasbackend/.idea/casasbackend.iml" filepath="$PROJECT_DIR$/../casasbackend/.idea/casasbackend.iml" />
+    </modules>
+  </component>
+</project>
