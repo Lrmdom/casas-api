@@ -13,8 +13,9 @@ services:
     cap_add:
       - SYS_NICE
     volumes:
-      - './docker/mysql/var/lib/mysql:/var/lib/mysql'
-      - './docker/mysql/docker-entrypoint-initdb.d:/test'
+
+       - '/home/led/Dropbox/mariadbCasasApi/var/lib/mysql:/var/lib/mysql'
+#      - './docker/mysql/docker-entrypoint-initdb.d:/test'
   php:
     container_name: api_php
     build:
