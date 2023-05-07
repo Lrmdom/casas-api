@@ -417,7 +417,7 @@ class Casa
         $this->tipoalojamento = $tipoalojamento;
         return $this;
     }
-    public function getTipo() : ?int
+    public function getTipo() : ?string
     {
         return $this->tipo;
     }

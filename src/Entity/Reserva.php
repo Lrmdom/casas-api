@@ -25,7 +25,7 @@ class Reserva
 {
     /**
      * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="reservas")
-     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=true,name="casa")
+     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=true,name="cod_casa")
      */
     private $casa;
     /**
