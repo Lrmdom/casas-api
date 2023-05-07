@@ -25,11 +25,11 @@ class Proprietario
     /**
      * @var int
      *
-     * @ORM\Column(name="propid", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="propid", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $propid = 'NULL';
+    private $propid ;
     /**
      * @var string
      *

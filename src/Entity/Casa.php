@@ -98,40 +98,42 @@ class Casa
     /**
      * @var string|null
      *
-     * @ORM\Column(name="adicionado", type="string", length=45, nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="adicionado", type="string", length=45, nullable=true)
      */
 
-    private $adicionado = 'CURRENT_TIMESTAMP';
+    private $adicionado;
     /**
      * @var string|null
      *
-     * @ORM\Column(name="data_activo", type="string", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="data_activo", type="string", length=45, nullable=true)
      */
-    private $dataActivo = 'NULL';
+    private $dataActivo ;
     /**
      * @var int|null
      *
-     * @ORM\Column(name="destino", type="integer", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="destino", type="string", length=45, nullable=true, options={"default"="NULL"})
      *
      * ApiFilter(SearchFilter::class, strategy: 'ipartial')
      */
     #[Groups(['casa'])]
     private $destino = 'NULL';
+
+
     /**
      * @var int|null
      *
      * @ORM\Column(name="proprietario", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
     #[Groups(['casa'])]
-    private $proprietario = 'NULL';
+    private  $proprietario ;
     /**
      * @var int|null
      *
-     * @ORM\Column(name="propid", type="integer", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="propid", type="integer", nullable=false)
      */
 
 
-    private $propid = 'NULL';
+    private $propid ;
     /**
      * @var string|null
      *
@@ -148,7 +150,7 @@ class Casa
     /**
      * @var string|null
      *
-     * @ORM\Column(name="tipo", type="integer", length=45, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="tipo", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
     #[Groups(['casa'])]
     private $tipo = 'NULL';
@@ -943,6 +945,22 @@ class Casa
     public function getCasageodatas()
     {
         return $this->casageodatas;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getProprietario(): ?int
+    {
+        return $this->proprietario;
+    }
+
+    /**
+     * @param int|null $proprietario
+     */
+    public function setProprietario(?int $proprietario): void
+    {
+        $this->proprietario = $proprietario;
     }
 
 

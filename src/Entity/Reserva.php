@@ -19,17 +19,17 @@ class Reserva
 {
     /**
      * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="reservas")
-     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
+     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=true,name="casa")
      */
     private $casa;
 
     /**
      * @var int|null
-     * @ORM\Column(name="cod_casa", type="integer", nullable=false)
+     * @ORM\Column(name="cod_casa", type="integer", nullable=true,options={"default"= 23})
      * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="reservas")
-     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=false,name="cod_casa")
+     * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=true,name="codCasa")
      */
-    private $codCasa;
+    private $codCasa= 23;
     /**
      * @var int
      *
@@ -44,7 +44,7 @@ class Reserva
      *
      * @ORM\Column(name="n_prereserva", type="integer", nullable=true, options={"default"="NULL"})
      */
-    private $nPrereserva = NULL;
+    private $nPrereserva = 'NULL';
 
     /**
      * @var bool|0
