@@ -1,4 +1,5 @@
 api_platform:
+  metadata_backward_compatibility_layer: false
   # format for refine.dev tool
   #  formats:
   #    json: [ 'application/json' ]
@@ -10,4 +11,6 @@ api_platform:
     versions: [ 3 ]
   defaults:
     pagination_enabled: true
+    normalization_context:
+      skip_null_values: true
 

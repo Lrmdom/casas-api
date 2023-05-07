@@ -2,25 +2,30 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiFilter;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
 /**
  * Proprietario
  *
- * @ORM\Table(name="proprietario")
+ * @ORM\Table (name="proprietario")
  * @ORM\Entity
- *
- * @ApiResource()
  */
+#[ApiResource]
 class Proprietario
 {
     /**
      * @ORM\OneToMany(targetEntity=Casa::class, mappedBy="owner")
      */
-
     private $casas;
     /**
      * @var int
@@ -29,7 +34,7 @@ class Proprietario
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $propid ;
+    private $propid;
     /**
      * @var string
      *
@@ -138,252 +143,192 @@ class Proprietario
      * @ORM\Column(name="fb_id", type="bigint", nullable=false)
      */
     private $fbId;
-
     public function __construct()
     {
         $this->casas = new ArrayCollection();
     }
-
     /**
      * @return Collection|Casa[]
      */
-    public function getCasas(): Collection
+    public function getCasas() : Collection
     {
         return $this->casas;
     }
-
-    public function getPropid(): ?int
+    public function getPropid() : ?int
     {
         return $this->propid;
     }
-
-    public function getProprietario(): ?string
+    public function getProprietario() : ?string
     {
         return $this->proprietario;
     }
-
-    public function setProprietario(string $proprietario): self
+    public function setProprietario(string $proprietario) : self
     {
         $this->proprietario = $proprietario;
-
         return $this;
     }
-
-    public function getSenha(): ?string
+    public function getSenha() : ?string
     {
         return $this->senha;
     }
-
-    public function setSenha(string $senha): self
+    public function setSenha(string $senha) : self
     {
         $this->senha = $senha;
-
         return $this;
     }
-
-    public function getSenhaRepeat(): ?string
+    public function getSenhaRepeat() : ?string
     {
         return $this->senhaRepeat;
     }
-
-    public function setSenhaRepeat(string $senhaRepeat): self
+    public function setSenhaRepeat(string $senhaRepeat) : self
     {
         $this->senhaRepeat = $senhaRepeat;
-
         return $this;
     }
-
-    public function getSalt(): ?string
+    public function getSalt() : ?string
     {
         return $this->salt;
     }
-
-    public function setSalt(?string $salt): self
+    public function setSalt(?string $salt) : self
     {
         $this->salt = $salt;
-
         return $this;
     }
-
-    public function getTelefone(): ?string
+    public function getTelefone() : ?string
     {
         return $this->telefone;
     }
-
-    public function setTelefone(string $telefone): self
+    public function setTelefone(string $telefone) : self
     {
         $this->telefone = $telefone;
-
         return $this;
     }
-
-    public function getEmail(): ?string
+    public function getEmail() : ?string
     {
         return $this->email;
     }
-
-    public function setEmail(string $email): self
+    public function setEmail(string $email) : self
     {
         $this->email = $email;
-
         return $this;
     }
-
-    public function getMorada(): ?string
+    public function getMorada() : ?string
     {
         return $this->morada;
     }
-
-    public function setMorada(string $morada): self
+    public function setMorada(string $morada) : self
     {
         $this->morada = $morada;
-
         return $this;
     }
-
-    public function getCodPostal(): ?string
+    public function getCodPostal() : ?string
     {
         return $this->codPostal;
     }
-
-    public function setCodPostal(string $codPostal): self
+    public function setCodPostal(string $codPostal) : self
     {
         $this->codPostal = $codPostal;
-
         return $this;
     }
-
-    public function getLocalidade(): ?string
+    public function getLocalidade() : ?string
     {
         return $this->localidade;
     }
-
-    public function setLocalidade(string $localidade): self
+    public function setLocalidade(string $localidade) : self
     {
         $this->localidade = $localidade;
-
         return $this;
     }
-
-    public function getConflito1(): ?string
+    public function getConflito1() : ?string
     {
         return $this->conflito1;
     }
-
-    public function setConflito1(?string $conflito1): self
+    public function setConflito1(?string $conflito1) : self
     {
         $this->conflito1 = $conflito1;
-
         return $this;
     }
-
-    public function getConflito2(): ?string
+    public function getConflito2() : ?string
     {
         return $this->conflito2;
     }
-
-    public function setConflito2(?string $conflito2): self
+    public function setConflito2(?string $conflito2) : self
     {
         $this->conflito2 = $conflito2;
-
         return $this;
     }
-
-    public function getConflito3(): ?string
+    public function getConflito3() : ?string
     {
         return $this->conflito3;
     }
-
-    public function setConflito3(?string $conflito3): self
+    public function setConflito3(?string $conflito3) : self
     {
         $this->conflito3 = $conflito3;
-
         return $this;
     }
-
-    public function getSessid(): ?string
+    public function getSessid() : ?string
     {
         return $this->sessid;
     }
-
-    public function setSessid(?string $sessid): self
+    public function setSessid(?string $sessid) : self
     {
         $this->sessid = $sessid;
-
         return $this;
     }
-
-    public function getActivo(): ?bool
+    public function getActivo() : ?bool
     {
         return $this->activo;
     }
-
-    public function setActivo(bool $activo): self
+    public function setActivo(bool $activo) : self
     {
         $this->activo = $activo;
-
         return $this;
     }
-
-    public function getPais(): ?string
+    public function getPais() : ?string
     {
         return $this->pais;
     }
-
-    public function setPais(string $pais): self
+    public function setPais(string $pais) : self
     {
         $this->pais = $pais;
-
         return $this;
     }
-
-    public function getSubscribeNewsletter(): ?bool
+    public function getSubscribeNewsletter() : ?bool
     {
         return $this->subscribeNewsletter;
     }
-
-    public function setSubscribeNewsletter(bool $subscribeNewsletter): self
+    public function setSubscribeNewsletter(bool $subscribeNewsletter) : self
     {
         $this->subscribeNewsletter = $subscribeNewsletter;
-
         return $this;
     }
-
-    public function getFacebookAccount(): ?bool
+    public function getFacebookAccount() : ?bool
     {
         return $this->facebookAccount;
     }
-
-    public function setFacebookAccount(bool $facebookAccount): self
+    public function setFacebookAccount(bool $facebookAccount) : self
     {
         $this->facebookAccount = $facebookAccount;
-
         return $this;
     }
-
-    public function getFbId(): ?string
+    public function getFbId() : ?string
     {
         return $this->fbId;
     }
-
-    public function setFbId(string $fbId): self
+    public function setFbId(string $fbId) : self
     {
         $this->fbId = $fbId;
-
         return $this;
     }
-
-    public function addCasa(Casa $casa): self
+    public function addCasa(Casa $casa) : self
     {
         if (!$this->casas->contains($casa)) {
             $this->casas[] = $casa;
             $casa->setOwner($this);
         }
-
         return $this;
     }
-
-    public function removeCasa(Casa $casa): self
+    public function removeCasa(Casa $casa) : self
     {
         if ($this->casas->removeElement($casa)) {
             // set the owning side to null (unless already changed)
@@ -391,9 +336,6 @@ class Proprietario
                 $casa->setOwner(null);
             }
         }
-
         return $this;
     }
-
-
 }

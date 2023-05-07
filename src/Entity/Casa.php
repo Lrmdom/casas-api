@@ -2,14 +2,16 @@
 
 namespace App\Entity;
 
-
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
-use ApiPlatform\Core\Annotation\ApiSubresource;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Serializer\Filter\PropertyFilter;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,24 +20,15 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * Casa
  *
- * @ORM\Table(name="casa")
+ * @ORM\Table (name="casa")
  * @ORM\Entity
- *
- *
- * @ApiResource()
- *
  */
-#[ApiFilter(SearchFilter::class, properties: ['titulo' => 'partial', 'cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact', 'proprietario' => 'exact', 'propid' => 'exact'])]
-#[ApiFilter(OrderFilter::class, properties: ['tipo', 'cod_casa'])]
-#[ApiResource(
-    normalizationContext: ['groups' => ['casa']],
-    itemOperations: ['get', 'patch', 'put']  //try with refine
-
-)]
+#[ApiResource(operations: [new Get(), new Patch(), new Put(), new Post(), new GetCollection()], normalizationContext: ['groups' => ['casa']])]
+#[ApiFilter(filterClass: SearchFilter::class, properties: ['titulo' => 'partial', 'cod_casa' => 'exact', 'tipo' => 'exact', 'destino' => 'exact', 'proprietario' => 'exact', 'propid' => 'exact'])]
+#[ApiFilter(filterClass: OrderFilter::class, properties: ['tipo', 'cod_casa'])]
 class Casa
 {
     /**
@@ -68,20 +61,16 @@ class Casa
      */
     #[Groups(['casa'])]
     private $prereservas;
-
     /**
      * @ORM\OneToMany(targetEntity=Casaimages::class, mappedBy="casa")
      * @ORM\JoinColumn(referencedColumnName="codCasa",nullable=false,name="codCasa")
      */
     #[Groups(['casa'])]
-    #[ApiSubresource]
     private iterable $casaimages;
-
     /**
      * @ORM\ManyToOne(targetEntity=Proprietario::class, inversedBy="casas")
      * @ORM\JoinColumn(referencedColumnName="propid",nullable=false,name="propid")
      */
-
     private $owner;
     /**
      * @var int
@@ -91,23 +80,21 @@ class Casa
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * ApiFilter(SearchFilter::class, strategy: 'ipartial')
      */
-
-    #[ApiFilter(SearchFilter::class, strategy: "exact")]
     #[Groups(['casa'])]
+    #[ApiFilter(filterClass: SearchFilter::class, strategy: 'exact')]
     private $codCasa;
     /**
      * @var string|null
      *
      * @ORM\Column(name="adicionado", type="string", length=45, nullable=true)
      */
-
     private $adicionado;
     /**
      * @var string|null
      *
      * @ORM\Column(name="data_activo", type="string", length=45, nullable=true)
      */
-    private $dataActivo ;
+    private $dataActivo;
     /**
      * @var int|null
      *
@@ -117,23 +104,19 @@ class Casa
      */
     #[Groups(['casa'])]
     private $destino = 'NULL';
-
-
     /**
      * @var int|null
      *
      * @ORM\Column(name="proprietario", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
     #[Groups(['casa'])]
-    private  $proprietario ;
+    private $proprietario;
     /**
      * @var int|null
      *
      * @ORM\Column(name="propid", type="integer", nullable=false)
      */
-
-
-    private $propid ;
+    private $propid;
     /**
      * @var string|null
      *
@@ -166,8 +149,6 @@ class Casa
      * @ORM\Column(name="area", type="string", length=45, nullable=true, options={"default"="NULL"})
      */
     private $area = 'NULL';
-
-
     /**
      * @var bool|0
      *
@@ -222,7 +203,6 @@ class Casa
      * @ORM\Column(name="outras_actividprox", type="string", length=255, nullable=true, options={"default"="NULL"})
      */
     private $outrasActividprox = 0;
-
     /**
      * @var string|null
      *
@@ -246,7 +226,7 @@ class Casa
      *
      * @ORM\Column(name="activo", type="boolean", nullable=true, options={"default"=0})
      */
-    #[ApiFilter(SearchFilter::class, strategy: "exact")]
+    #[ApiFilter(strategy: 'exact', filterClass: SearchFilter::class)]
     private $activo = 0;
     /**
      * @var bool|null
@@ -285,8 +265,6 @@ class Casa
      * @ORM\Column(name="qtspecialoffer", type="integer", nullable=true, options={"default"=0})
      */
     private $qtspecialoffer = NULL;
-
-
     /**
      * @var bool|0
      *
@@ -300,8 +278,6 @@ class Casa
      * @ORM\Column(name="valorcaucao", type="string", length=10, nullable=true, options={"default"= 0})
      */
     private $valorcaucao = 0;
-
-
     /**
      * @var string|null
      *
@@ -366,563 +342,429 @@ class Casa
      * @ORM\Column(name="anoconstrucao", type="integer", nullable=false)
      */
     private $anoconstrucao = 0;
-
     public function __construct()
     {
         $this->prereservas = new ArrayCollection();
         $this->reservas = new ArrayCollection();
         $this->casaimages = new ArrayCollection();
         /*$this->casaattributes = new ArrayCollection();
-        $this->casageodata = new ArrayCollection();
-        $this->casaamenities = new ArrayCollection();*/
+          $this->casageodata = new ArrayCollection();
+          $this->casaamenities = new ArrayCollection();*/
     }
-
     public function getOwner()
     {
         return $this->owner;
     }
-
-    public function setOwner($owner): void
+    public function setOwner($owner) : void
     {
         $this->owner = $owner;
     }
-
-    public function getCodCasa(): ?int
+    public function getCodCasa() : ?int
     {
         return $this->codCasa;
     }
-
-    public function getAdicionado(): ?string
+    public function getAdicionado() : ?string
     {
         return $this->adicionado;
     }
-
-    public function setAdicionado(?string $adicionado): self
+    public function setAdicionado(?string $adicionado) : self
     {
         $this->adicionado = $adicionado;
-
         return $this;
     }
-
-    public function getDataActivo(): ?string
+    public function getDataActivo() : ?string
     {
         return $this->dataActivo;
     }
-
-    public function setDataActivo(?string $dataActivo): self
+    public function setDataActivo(?string $dataActivo) : self
     {
         $this->dataActivo = $dataActivo;
-
         return $this;
     }
-
-    public function getDestino(): ?int
+    public function getDestino() : ?int
     {
         return $this->destino;
     }
-
-    public function setDestino(?int $destino): self
+    public function setDestino(?int $destino) : self
     {
         $this->destino = $destino;
-
         return $this;
     }
-
-    public function getPropid(): ?int
+    public function getPropid() : ?int
     {
         return $this->propid;
     }
-
-    public function setPropid(?int $propid): self
+    public function setPropid(?int $propid) : self
     {
         $this->propid = $propid;
-
         return $this;
     }
-
-    public function getDesignacao(): ?string
+    public function getDesignacao() : ?string
     {
         return $this->designacao;
     }
-
-    public function setDesignacao(?string $designacao): self
+    public function setDesignacao(?string $designacao) : self
     {
         $this->designacao = $designacao;
-
         return $this;
     }
-
-    public function getTipoalojamento(): ?string
+    public function getTipoalojamento() : ?string
     {
         return $this->tipoalojamento;
     }
-
-    public function setTipoalojamento(?string $tipoalojamento): self
+    public function setTipoalojamento(?string $tipoalojamento) : self
     {
         $this->tipoalojamento = $tipoalojamento;
-
         return $this;
     }
-
-    public function getTipo(): ?int
+    public function getTipo() : ?int
     {
         return $this->tipo;
     }
-
-    public function setTipo(?int $tipo): self
+    public function setTipo(?int $tipo) : self
     {
         $this->tipo = $tipo;
-
         return $this;
     }
-
-    public function getPessoas(): ?int
+    public function getPessoas() : ?int
     {
         return $this->pessoas;
     }
-
-    public function setPessoas(?int $pessoas): self
+    public function setPessoas(?int $pessoas) : self
     {
         $this->pessoas = $pessoas;
-
         return $this;
     }
-
-
-    public function getArea(): ?string
+    public function getArea() : ?string
     {
         return $this->area;
     }
-
-    public function setArea(?string $area): self
+    public function setArea(?string $area) : self
     {
         $this->area = $area;
-
         return $this;
     }
-
-
-    public function getGolf(): ?bool
+    public function getGolf() : ?bool
     {
         return $this->golf;
     }
-
-    public function setGolf(?bool $golf): self
+    public function setGolf(?bool $golf) : self
     {
         $this->golf = $golf;
-
         return $this;
     }
-
-    public function getTenis(): ?bool
+    public function getTenis() : ?bool
     {
         return $this->tenis;
     }
-
-    public function setTenis(?bool $tenis): self
+    public function setTenis(?bool $tenis) : self
     {
         $this->tenis = $tenis;
-
         return $this;
     }
-
-    public function getPesca(): ?bool
+    public function getPesca() : ?bool
     {
         return $this->pesca;
     }
-
-    public function setPesca(?bool $pesca): self
+    public function setPesca(?bool $pesca) : self
     {
         $this->pesca = $pesca;
-
         return $this;
     }
-
-    public function getNatacao(): ?bool
+    public function getNatacao() : ?bool
     {
         return $this->natacao;
     }
-
-    public function setNatacao(?bool $natacao): self
+    public function setNatacao(?bool $natacao) : self
     {
         $this->natacao = $natacao;
-
         return $this;
     }
-
-    public function getBowling(): ?bool
+    public function getBowling() : ?bool
     {
         return $this->bowling;
     }
-
-    public function setBowling(?bool $bowling): self
+    public function setBowling(?bool $bowling) : self
     {
         $this->bowling = $bowling;
-
         return $this;
     }
-
-    public function getCasino(): ?bool
+    public function getCasino() : ?bool
     {
         return $this->casino;
     }
-
-    public function setCasino(?bool $casino): self
+    public function setCasino(?bool $casino) : self
     {
         $this->casino = $casino;
-
         return $this;
     }
-
-    public function getCinema(): ?bool
+    public function getCinema() : ?bool
     {
         return $this->cinema;
     }
-
-    public function setCinema(?bool $cinema): self
+    public function setCinema(?bool $cinema) : self
     {
         $this->cinema = $cinema;
-
         return $this;
     }
-
-    public function getDiscoteca(): ?bool
+    public function getDiscoteca() : ?bool
     {
         return $this->discoteca;
     }
-
-    public function setDiscoteca(?bool $discoteca): self
+    public function setDiscoteca(?bool $discoteca) : self
     {
         $this->discoteca = $discoteca;
-
         return $this;
     }
-
-    public function getOutrasActividprox(): ?string
+    public function getOutrasActividprox() : ?string
     {
         return $this->outrasActividprox;
     }
-
-    public function setOutrasActividprox(?string $outrasActividprox): self
+    public function setOutrasActividprox(?string $outrasActividprox) : self
     {
         $this->outrasActividprox = $outrasActividprox;
-
         return $this;
     }
-
-
-    public function getOutrosServicos(): ?string
+    public function getOutrosServicos() : ?string
     {
         return $this->outrosServicos;
     }
-
-    public function setOutrosServicos(?string $outrosServicos): self
+    public function setOutrosServicos(?string $outrosServicos) : self
     {
         $this->outrosServicos = $outrosServicos;
-
         return $this;
     }
-
-    public function getLinkInfo(): ?string
+    public function getLinkInfo() : ?string
     {
         return $this->linkInfo;
     }
-
-    public function setLinkInfo(?string $linkInfo): self
+    public function setLinkInfo(?string $linkInfo) : self
     {
         $this->linkInfo = $linkInfo;
-
         return $this;
     }
-
-    public function getLinkDispon(): ?string
+    public function getLinkDispon() : ?string
     {
         return $this->linkDispon;
     }
-
-    public function setLinkDispon(?string $linkDispon): self
+    public function setLinkDispon(?string $linkDispon) : self
     {
         $this->linkDispon = $linkDispon;
-
         return $this;
     }
-
-    public function getActivo(): ?bool
+    public function getActivo() : ?bool
     {
         return $this->activo;
     }
-
-    public function setActivo(?bool $activo): self
+    public function setActivo(?bool $activo) : self
     {
         $this->activo = $activo;
-
         return $this;
     }
-
-    public function getSessid(): ?string
+    public function getSessid() : ?string
     {
         return $this->sessid;
     }
-
-    public function setSessid(?string $sessid): self
+    public function setSessid(?string $sessid) : self
     {
         $this->sessid = $sessid;
-
         return $this;
     }
-
-    public function getPromo(): ?bool
+    public function getPromo() : ?bool
     {
         return $this->promo;
     }
-
-    public function setPromo(?bool $promo): self
+    public function setPromo(?bool $promo) : self
     {
         $this->promo = $promo;
-
         return $this;
     }
-
-    public function getCertif(): ?bool
+    public function getCertif() : ?bool
     {
         return $this->certif;
     }
-
-    public function setCertif(?bool $certif): self
+    public function setCertif(?bool $certif) : self
     {
         $this->certif = $certif;
-
         return $this;
     }
-
-    public function getDataAct(): ?string
+    public function getDataAct() : ?string
     {
         return $this->dataAct;
     }
-
-    public function setDataAct(?string $dataAct): self
+    public function setDataAct(?string $dataAct) : self
     {
         $this->dataAct = $dataAct;
-
         return $this;
     }
-
-    public function getTitulo(): ?string
+    public function getTitulo() : ?string
     {
         return $this->titulo;
     }
-
-    public function setTitulo(?string $titulo): self
+    public function setTitulo(?string $titulo) : self
     {
         $this->titulo = $titulo;
-
         return $this;
     }
-
-    public function getQtspecialoffer(): ?int
+    public function getQtspecialoffer() : ?int
     {
         return $this->qtspecialoffer;
     }
-
-    public function setQtspecialoffer(?int $qtspecialoffer): self
+    public function setQtspecialoffer(?int $qtspecialoffer) : self
     {
         $this->qtspecialoffer = $qtspecialoffer;
-
         return $this;
     }
-
-
-    public function getCaucao(): ?bool
+    public function getCaucao() : ?bool
     {
         return $this->caucao;
     }
-
-    public function setCaucao(?bool $caucao): self
+    public function setCaucao(?bool $caucao) : self
     {
         $this->caucao = $caucao;
-
         return $this;
     }
-
-    public function getValorcaucao(): ?string
+    public function getValorcaucao() : ?string
     {
         return $this->valorcaucao;
     }
-
-    public function setValorcaucao(?string $valorcaucao): self
+    public function setValorcaucao(?string $valorcaucao) : self
     {
         $this->valorcaucao = $valorcaucao;
-
         return $this;
     }
-
-
-    public function getAltImg1(): ?string
+    public function getAltImg1() : ?string
     {
         return $this->altImg1;
     }
-
-    public function setAltImg1(?string $altImg1): self
+    public function setAltImg1(?string $altImg1) : self
     {
         $this->altImg1 = $altImg1;
-
         return $this;
     }
-
-    public function getForSale(): ?bool
+    public function getForSale() : ?bool
     {
         return $this->forSale;
     }
-
-    public function setForSale(bool $forSale): self
+    public function setForSale(bool $forSale) : self
     {
         $this->forSale = $forSale;
-
         return $this;
     }
-
-    public function getForRent(): ?bool
+    public function getForRent() : ?bool
     {
         return $this->forRent;
     }
-
-    public function setForRent(bool $forRent): self
+    public function setForRent(bool $forRent) : self
     {
         $this->forRent = $forRent;
-
         return $this;
     }
-
-    public function getForArrenda(): ?bool
+    public function getForArrenda() : ?bool
     {
         return $this->forArrenda;
     }
-
-    public function setForArrenda(bool $forArrenda): self
+    public function setForArrenda(bool $forArrenda) : self
     {
         $this->forArrenda = $forArrenda;
-
         return $this;
     }
-
-    public function getValorArrendamento(): ?int
+    public function getValorArrendamento() : ?int
     {
         return $this->valorArrendamento;
     }
-
-    public function setValorArrendamento(?int $valorArrendamento): self
+    public function setValorArrendamento(?int $valorArrendamento) : self
     {
         $this->valorArrendamento = $valorArrendamento;
-
         return $this;
     }
-
-    public function getValorVenda(): ?string
+    public function getValorVenda() : ?string
     {
         return $this->valorVenda;
     }
-
-    public function setValorVenda(?string $valorVenda): self
+    public function setValorVenda(?string $valorVenda) : self
     {
         $this->valorVenda = $valorVenda;
-
         return $this;
     }
-
-    public function getCertifEnerg(): ?bool
+    public function getCertifEnerg() : ?bool
     {
         return $this->certifEnerg;
     }
-
-    public function setCertifEnerg(bool $certifEnerg): self
+    public function setCertifEnerg(bool $certifEnerg) : self
     {
         $this->certifEnerg = $certifEnerg;
-
         return $this;
     }
-
-    public function getCertifEnergLevel(): ?string
+    public function getCertifEnergLevel() : ?string
     {
         return $this->certifEnergLevel;
     }
-
-    public function setCertifEnergLevel(string $certifEnergLevel): self
+    public function setCertifEnergLevel(string $certifEnergLevel) : self
     {
         $this->certifEnergLevel = $certifEnergLevel;
-
         return $this;
     }
-
-    public function getSeoTitle(): ?string
+    public function getSeoTitle() : ?string
     {
         return $this->seoTitle;
     }
-
-    public function setSeoTitle(string $seoTitle): self
+    public function setSeoTitle(string $seoTitle) : self
     {
         $this->seoTitle = $seoTitle;
-
         return $this;
     }
-
-    public function getAnoconstrucao(): ?int
+    public function getAnoconstrucao() : ?int
     {
         return $this->anoconstrucao;
     }
-
-    public function setAnoconstrucao(int $anoconstrucao): self
+    public function setAnoconstrucao(int $anoconstrucao) : self
     {
         $this->anoconstrucao = $anoconstrucao;
-
         return $this;
     }
-
     /* public function addPrereserva(Prereserva $prereserva): self
-     {
-         if (!$this->prereservas->contains($prereserva)) {
-             $this->prereservas[] = $prereserva;
-             $prereserva->setPrereservas($prereserva);
-         }
-
-         return $this;
-     }
-
-     public function removePrereserva(Prereserva $prereserva): self
-     {
-         if ($this->prereservas->removeElement($prereserva)) {
-             // set the owning side to null (unless already changed)
-             if ($prereserva->getPrereservas() === $this) {
-                 $prereserva->setPrereservas(null);
+         {
+             if (!$this->prereservas->contains($prereserva)) {
+                 $this->prereservas[] = $prereserva;
+                 $prereserva->setPrereservas($prereserva);
              }
+    
+             return $this;
          }
-
-         return $this;
-     }*/
-
+    
+         public function removePrereserva(Prereserva $prereserva): self
+         {
+             if ($this->prereservas->removeElement($prereserva)) {
+                 // set the owning side to null (unless already changed)
+                 if ($prereserva->getPrereservas() === $this) {
+                     $prereserva->setPrereservas(null);
+                 }
+             }
+    
+             return $this;
+         }*/
     /**
      * @return Collection|Prereserva[]
      */
-    public function getPrereservas(): Collection
+    public function getPrereservas() : Collection
     {
         return $this->prereservas;
     }
-
     /**
      * @return Collection|Casaimages[]
      */
-    public function getCasaimages(): Collection
+    public function getCasaimages() : Collection
     {
         return $this->casaimages;
     }
-
     /**
      * @return Collection|Reserva[]
      */
-    public function getReservas(): Collection
+    public function getReservas() : Collection
     {
         return $this->reservas;
     }
-
     /**
      * @return Collection|Casaattributes[]
      */
@@ -930,15 +772,13 @@ class Casa
     {
         return $this->casaattributes;
     }
-
     /**
      * @return Collection|Casaamenities[]
      */
-    public function getCasaamenities()/*: Collection*/
+    public function getCasaamenities()
     {
         return $this->casaamenities;
     }
-
     /**
      * @return Collection|Casageodatas[]
      */
@@ -946,22 +786,18 @@ class Casa
     {
         return $this->casageodatas;
     }
-
     /**
      * @return int|null
      */
-    public function getProprietario(): ?int
+    public function getProprietario() : ?int
     {
         return $this->proprietario;
     }
-
     /**
      * @param int|null $proprietario
      */
-    public function setProprietario(?int $proprietario): void
+    public function setProprietario(?int $proprietario) : void
     {
         $this->proprietario = $proprietario;
     }
-
-
 }

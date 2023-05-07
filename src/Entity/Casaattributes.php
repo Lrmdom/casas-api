@@ -2,18 +2,24 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiFilter;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
-
 /**
  * Casaattributes
  *
- * @ORM\Table(name="casaattributes")
+ * @ORM\Table (name="casaattributes")
  * @ORM\Entity
- *
- * @ApiResource()
  */
+#[ApiResource]
 class Casaattributes
 {
     /**
@@ -191,324 +197,244 @@ class Casaattributes
      * @ORM\Column(name="torradeira", type="boolean", nullable=true, options={"default"=0})
      */
     private $torradeira = 0;
-
-    public function getId(): ?int
+    public function getId() : ?int
     {
         return $this->id;
     }
-
-    public function setId(?int $id): self
+    public function setId(?int $id) : self
     {
         $this->id = $id;
-
         return $this;
     }
-
-    public function getRoupascama(): ?bool
+    public function getRoupascama() : ?bool
     {
         return $this->roupascama;
     }
-
-    public function setRoupascama(?bool $roupascama): self
+    public function setRoupascama(?bool $roupascama) : self
     {
         $this->roupascama = $roupascama;
-
         return $this;
     }
-
-    public function getRoupasbanho(): ?bool
+    public function getRoupasbanho() : ?bool
     {
         return $this->roupasbanho;
     }
-
-    public function setRoupasbanho(?bool $roupasbanho): self
+    public function setRoupasbanho(?bool $roupasbanho) : self
     {
         $this->roupasbanho = $roupasbanho;
-
         return $this;
     }
-
-    public function getLimpeza(): ?bool
+    public function getLimpeza() : ?bool
     {
         return $this->limpeza;
     }
-
-    public function setLimpeza(?bool $limpeza): self
+    public function setLimpeza(?bool $limpeza) : self
     {
         $this->limpeza = $limpeza;
-
         return $this;
     }
-
-    public function getUtilcozinha(): ?bool
+    public function getUtilcozinha() : ?bool
     {
         return $this->utilcozinha;
     }
-
-    public function setUtilcozinha(?bool $utilcozinha): self
+    public function setUtilcozinha(?bool $utilcozinha) : self
     {
         $this->utilcozinha = $utilcozinha;
-
         return $this;
     }
-
-    public function getFogao(): ?bool
+    public function getFogao() : ?bool
     {
         return $this->fogao;
     }
-
-    public function setFogao(?bool $fogao): self
+    public function setFogao(?bool $fogao) : self
     {
         $this->fogao = $fogao;
-
         return $this;
     }
-
-    public function getFrigorif(): ?bool
+    public function getFrigorif() : ?bool
     {
         return $this->frigorif;
     }
-
-    public function setFrigorif(?bool $frigorif): self
+    public function setFrigorif(?bool $frigorif) : self
     {
         $this->frigorif = $frigorif;
-
         return $this;
     }
-
-    public function getCongel(): ?bool
+    public function getCongel() : ?bool
     {
         return $this->congel;
     }
-
-    public function setCongel(?bool $congel): self
+    public function setCongel(?bool $congel) : self
     {
         $this->congel = $congel;
-
         return $this;
     }
-
-    public function getForno(): ?bool
+    public function getForno() : ?bool
     {
         return $this->forno;
     }
-
-    public function setForno(?bool $forno): self
+    public function setForno(?bool $forno) : self
     {
         $this->forno = $forno;
-
         return $this;
     }
-
-    public function getBarbecue(): ?bool
+    public function getBarbecue() : ?bool
     {
         return $this->barbecue;
     }
-
-    public function setBarbecue(?bool $barbecue): self
+    public function setBarbecue(?bool $barbecue) : self
     {
         $this->barbecue = $barbecue;
-
         return $this;
     }
-
-    public function getMicrondas(): ?bool
+    public function getMicrondas() : ?bool
     {
         return $this->microndas;
     }
-
-    public function setMicrondas(?bool $microndas): self
+    public function setMicrondas(?bool $microndas) : self
     {
         $this->microndas = $microndas;
-
         return $this;
     }
-
-    public function getMlavaloica(): ?bool
+    public function getMlavaloica() : ?bool
     {
         return $this->mlavaloica;
     }
-
-    public function setMlavaloica(?bool $mlavaloica): self
+    public function setMlavaloica(?bool $mlavaloica) : self
     {
         $this->mlavaloica = $mlavaloica;
-
         return $this;
     }
-
-    public function getMlavaroupa(): ?bool
+    public function getMlavaroupa() : ?bool
     {
         return $this->mlavaroupa;
     }
-
-    public function setMlavaroupa(?bool $mlavaroupa): self
+    public function setMlavaroupa(?bool $mlavaroupa) : self
     {
         $this->mlavaroupa = $mlavaroupa;
-
         return $this;
     }
-
-    public function getAqcentral(): ?bool
+    public function getAqcentral() : ?bool
     {
         return $this->aqcentral;
     }
-
-    public function setAqcentral(?bool $aqcentral): self
+    public function setAqcentral(?bool $aqcentral) : self
     {
         $this->aqcentral = $aqcentral;
-
         return $this;
     }
-
-    public function getSatcabo(): ?bool
+    public function getSatcabo() : ?bool
     {
         return $this->satcabo;
     }
-
-    public function setSatcabo(?bool $satcabo): self
+    public function setSatcabo(?bool $satcabo) : self
     {
         $this->satcabo = $satcabo;
-
         return $this;
     }
-
-    public function getInternet(): ?bool
+    public function getInternet() : ?bool
     {
         return $this->internet;
     }
-
-    public function setInternet(?bool $internet): self
+    public function setInternet(?bool $internet) : self
     {
         $this->internet = $internet;
-
         return $this;
     }
-
-    public function getFengomar(): ?bool
+    public function getFengomar() : ?bool
     {
         return $this->fengomar;
     }
-
-    public function setFengomar(?bool $fengomar): self
+    public function setFengomar(?bool $fengomar) : self
     {
         $this->fengomar = $fengomar;
-
         return $this;
     }
-
-    public function getEstacionamento(): ?bool
+    public function getEstacionamento() : ?bool
     {
         return $this->estacionamento;
     }
-
-    public function setEstacionamento(?bool $estacionamento): self
+    public function setEstacionamento(?bool $estacionamento) : self
     {
         $this->estacionamento = $estacionamento;
-
         return $this;
     }
-
-    public function getTelefone(): ?bool
+    public function getTelefone() : ?bool
     {
         return $this->telefone;
     }
-
-    public function setTelefone(?bool $telefone): self
+    public function setTelefone(?bool $telefone) : self
     {
         $this->telefone = $telefone;
-
         return $this;
     }
-
-    public function getDespertador(): ?bool
+    public function getDespertador() : ?bool
     {
         return $this->despertador;
     }
-
-    public function setDespertador(?bool $despertador): self
+    public function setDespertador(?bool $despertador) : self
     {
         $this->despertador = $despertador;
-
         return $this;
     }
-
-    public function getDvd(): ?bool
+    public function getDvd() : ?bool
     {
         return $this->dvd;
     }
-
-    public function setDvd(?bool $dvd): self
+    public function setDvd(?bool $dvd) : self
     {
         $this->dvd = $dvd;
-
         return $this;
     }
-
-    public function getTorradeira(): ?bool
+    public function getTorradeira() : ?bool
     {
         return $this->torradeira;
     }
-
-    public function setTorradeira(?bool $torradeira): self
+    public function setTorradeira(?bool $torradeira) : self
     {
         $this->torradeira = $torradeira;
-
         return $this;
     }
-
-    public function getPiscina(): ?bool
+    public function getPiscina() : ?bool
     {
         return $this->piscina;
     }
-
-    public function setPiscina(?bool $piscina): self
+    public function setPiscina(?bool $piscina) : self
     {
         $this->piscina = $piscina;
-
         return $this;
     }
-
-    public function getTelevisao(): ?bool
+    public function getTelevisao() : ?bool
     {
         return $this->televisao;
     }
-
-    public function setTelevisao(?bool $televisao): self
+    public function setTelevisao(?bool $televisao) : self
     {
         $this->televisao = $televisao;
-
         return $this;
     }
-
-    public function getArCondicionado(): ?bool
+    public function getArCondicionado() : ?bool
     {
         return $this->arCondicionado;
     }
-
-    public function setArCondicionado(?bool $arCondicionado): self
+    public function setArCondicionado(?bool $arCondicionado) : self
     {
         $this->arCondicionado = $arCondicionado;
-
         return $this;
     }
-
-    public function getCodCasa(): ?int
+    public function getCodCasa() : ?int
     {
         return $this->codCasa;
     }
-
-    public function setCodCasa(?int $codCasa): self
+    public function setCodCasa(?int $codCasa) : self
     {
         $this->codCasa = $codCasa;
-
         return $this;
     }
-
     public function getCasa()
     {
         return $this->casa;
     }
-
     public function setCasa($casa)
     {
         $this->casa = $casa;

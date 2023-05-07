@@ -1,9 +1,9 @@
 security:
-  encoders:
-    App\Entity\Admin:
-      algorithm: auto
-    App\Entity\User:
-      algorithm: auto
+#  encoders:
+#    App\Entity\Admin:
+#      algorithm: auto
+#    App\Entity\User:
+#      algorithm: auto
 
 
   # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -19,7 +19,7 @@ security:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
     main:
-      anonymous: true
+#      anonymous: true
       lazy: true
       provider: app_user_provider
 #      guard:

@@ -17,3 +17,6 @@
 /.history/src/Controller/
 /.history/src/
 /docker/mysql/var/lib/mysql/
+/var
+/vendor
+

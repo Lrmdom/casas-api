@@ -2,18 +2,24 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiFilter;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
-
 /**
  * Casaamenities
  *
- * @ORM\Table(name="casaamenities")
+ * @ORM\Table (name="casaamenities")
  * @ORM\Entity
- *
- * @ApiResource()
  */
+#[ApiResource]
 class Casaamenities
 {
     /**
@@ -37,8 +43,6 @@ class Casaamenities
      */
     #[Groups(['casa'])]
     private $codCasa = 'NULL';
-
-
     /**
      * @var int|null
      *
@@ -88,120 +92,91 @@ class Casaamenities
      */
     #[Groups(['casa'])]
     private $deficientes = 0;
-
-    public function getId(): ?int
+    public function getId() : ?int
     {
         return $this->id;
     }
-
-    public function setId($id): self
+    public function setId($id) : self
     {
         $this->id = $id;
-
         return $this;
     }
-
-    public function getCodCasa(): ?int
+    public function getCodCasa() : ?int
     {
         return $this->codCasa;
     }
-
-    public function setCodCasa(?int $codCasa): self
+    public function setCodCasa(?int $codCasa) : self
     {
         $this->codCasa = $codCasa;
-
         return $this;
     }
-
-    public function getQuartos(): ?int
+    public function getQuartos() : ?int
     {
         return $this->quartos;
     }
-
-    public function setQuartos(?int $quartos): self
+    public function setQuartos(?int $quartos) : self
     {
         $this->quartos = $quartos;
-
         return $this;
     }
-
-    public function getCamascasal(): ?int
+    public function getCamascasal() : ?int
     {
         return $this->camascasal;
     }
-
-    public function setCamascasal(?int $camascasal): self
+    public function setCamascasal(?int $camascasal) : self
     {
         $this->camascasal = $camascasal;
-
         return $this;
     }
-
-    public function getCamassingle(): ?int
+    public function getCamassingle() : ?int
     {
         return $this->camassingle;
     }
-
-    public function setCamassingle(?int $camassingle): self
+    public function setCamassingle(?int $camassingle) : self
     {
         $this->camassingle = $camassingle;
-
         return $this;
     }
-
-    public function getCasasbanho(): ?int
+    public function getCasasbanho() : ?int
     {
         return $this->casasbanho;
     }
-
-    public function setCasasbanho(?int $casasbanho): self
+    public function setCasasbanho(?int $casasbanho) : self
     {
         $this->casasbanho = $casasbanho;
-
         return $this;
     }
-
-    public function getAnimais(): ?bool
+    public function getAnimais() : ?bool
     {
         return $this->animais;
     }
-
-    public function setAnimais(?bool $animais): self
+    public function setAnimais(?bool $animais) : self
     {
         $this->animais = $animais;
-
         return $this;
     }
-
-    public function getFumadores(): ?bool
+    public function getFumadores() : ?bool
     {
         return $this->fumadores;
     }
-
-    public function setFumadores(?bool $fumadores): self
+    public function setFumadores(?bool $fumadores) : self
     {
         $this->fumadores = $fumadores;
-
         return $this;
     }
-
-    public function getDeficientes(): ?string
+    public function getDeficientes() : ?string
     {
         return $this->deficientes;
     }
-
-    public function setDeficientes(?string $deficientes): self
+    public function setDeficientes(?string $deficientes) : self
     {
         $this->deficientes = $deficientes;
-
         return $this;
     }
-
     public function getCasa()
     {
         return $this->casa;
     }
-
     public function setCasa($casa)
     {
         $this->casa = $casa;

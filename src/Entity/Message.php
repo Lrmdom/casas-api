@@ -2,17 +2,23 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiProperty;
+use ApiPlatform\Metadata\ApiFilter;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
-
 /**
  * Message
  *
- * @ORM\Table(name="Message", indexes={@ORM\Index(name="IDX_790009E3BF396750", columns={"id"})})
+ * @ORM\Table (name="Message", indexes={@ORM\Index (name="IDX_790009E3BF396750", columns={"id"})})
  * @ORM\Entity
- * 
- * @ApiResource()
  */
+#[ApiResource]
 class Message
 {
     /**
@@ -23,14 +29,12 @@ class Message
      * @ORM\GeneratedValue(strategy="NONE")
      */
     private $language = '\'\'';
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="translation", type="text", length=65535, nullable=true, options={"default"="NULL"})
      */
     private $translation = 'NULL';
-
     /**
      * @var \Sourcemessage
      *
@@ -42,35 +46,26 @@ class Message
      * })
      */
     private $id;
-
-    public function getLanguage(): ?string
+    public function getLanguage() : ?string
     {
         return $this->language;
     }
-
-    public function getTranslation(): ?string
+    public function getTranslation() : ?string
     {
         return $this->translation;
     }
-
-    public function setTranslation(?string $translation): self
+    public function setTranslation(?string $translation) : self
     {
         $this->translation = $translation;
-
         return $this;
     }
-
-    public function getId(): ?Sourcemessage
+    public function getId() : ?Sourcemessage
     {
         return $this->id;
     }
-
-    public function setId(?Sourcemessage $id): self
+    public function setId(?Sourcemessage $id) : self
     {
         $this->id = $id;
-
         return $this;
     }
-
-
 }
