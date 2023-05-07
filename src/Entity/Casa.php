@@ -381,7 +381,7 @@ class Casa
         $this->dataActivo = $dataActivo;
         return $this;
     }
-    public function getDestino() : ?int
+    public function getDestino() : ?string
     {
         return $this->destino;
     }
@@ -789,7 +789,7 @@ class Casa
     /**
      * @return int|null
      */
-    public function getProprietario() : ?int
+    public function getProprietario() : ?string
     {
         return $this->proprietario;
     }
