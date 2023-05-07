@@ -30,7 +30,7 @@ class Reserva
     private $casa;
     /**
      * @var int|null
-     * @ORM\Column(name="cod_casa", type="integer", nullable=true,options={"default"= 23})
+     * @ORM\Column(name="cod_casa", type="integer", nullable=true)
      * @ORM\ManyToOne(targetEntity=Casa::class, inversedBy="reservas")
      * @ORM\JoinColumn(referencedColumnName="cod_casa",nullable=true,name="codCasa")
      */
