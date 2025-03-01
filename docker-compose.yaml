@@ -17,6 +17,7 @@ services:
 #      - '/home/led/Dropbox/mariadbCasasApi/var/lib/mysql:/var/lib/mysql'
 #      - './docker/mysql/docker-entrypoint-initdb.d:/test'
   php:
+    restart: always
     container_name: api_php
     build:
       context: ./docker/php
@@ -38,6 +39,9 @@ services:
     extra_hosts:
       # Ensure that host.docker.internal is correctly defined on Linux
       - host.docker.internal:host-gateway
+    command: composer install --ignore-platform-reqs
+    networks:
+      - internal
 #    depends_on:
 #      - database
   nginx:
@@ -52,3 +56,9 @@ services:
     depends_on:
       - php
  #    - database
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
